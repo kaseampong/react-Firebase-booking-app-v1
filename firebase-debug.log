@@ -1,0 +1,174 @@
+[debug] [2019-06-02T20:23:00.568Z] ----------------------------------------------------------------------
+[debug] [2019-06-02T20:23:00.601Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lukas\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-06-02T20:23:00.602Z] CLI Version:   6.9.2
+[debug] [2019-06-02T20:23:00.602Z] Platform:      win32
+[debug] [2019-06-02T20:23:00.602Z] Node Version:  v11.13.0
+[debug] [2019-06-02T20:23:00.652Z] Time:          Sun Jun 02 2019 23:23:00 GMT+0300 (East Africa Time)
+[debug] [2019-06-02T20:23:00.653Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-02T20:23:00.756Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-02T20:23:00.757Z] > authorizing via signed-in user
+[debug] [2019-06-02T20:23:00.757Z] [iam] checking project booking-app-2019 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-06-02T20:23:00.761Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/booking-app-2019:testIamPermissions  
+
+[debug] [2019-06-02T20:23:04.977Z] <<< HTTP RESPONSE 200
+[debug] [2019-06-02T20:23:04.989Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/booking-app-2019  
+ 
+[debug] [2019-06-02T20:23:05.637Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'booking-app-2019'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-06-02T20:23:05.671Z] >>> HTTP REQUEST PUT https://booking-app-2019.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+[debug] [2019-06-02T20:23:06.771Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database booking-app-2019 is valid
+[debug] [2019-06-02T20:23:06.785Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/booking-app-2019/versions  
+
+[debug] [2019-06-02T20:23:18.938Z] <<< HTTP RESPONSE 503
+[debug] [2019-06-02T20:23:18.938Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-06-02T20:23:19.513Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Sun, 02 Jun 2019 20:23:18 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,44,43,39\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/booking-app-2019/versions",
+        "path": "/v1beta1/sites/booking-app-2019/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/booking-app-2019/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
+[debug] [2019-06-02T20:26:33.258Z] ----------------------------------------------------------------------
+[debug] [2019-06-02T20:26:33.264Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lukas\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-06-02T20:26:33.265Z] CLI Version:   6.10.0
+[debug] [2019-06-02T20:26:33.265Z] Platform:      win32
+[debug] [2019-06-02T20:26:33.265Z] Node Version:  v11.13.0
+[debug] [2019-06-02T20:26:33.267Z] Time:          Sun Jun 02 2019 23:26:33 GMT+0300 (East Africa Time)
+[debug] [2019-06-02T20:26:33.267Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-02T20:26:33.285Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-02T20:26:33.285Z] > authorizing via signed-in user
+[debug] [2019-06-02T20:26:33.286Z] [iam] checking project booking-app-2019 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-06-02T20:26:33.290Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/booking-app-2019:testIamPermissions  
+
+[debug] [2019-06-02T20:26:35.199Z] <<< HTTP RESPONSE 200
+[debug] [2019-06-02T20:26:35.202Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/booking-app-2019  
+ 
+[debug] [2019-06-02T20:26:35.823Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'booking-app-2019'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-06-02T20:26:35.859Z] >>> HTTP REQUEST PUT https://booking-app-2019.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+[debug] [2019-06-02T20:26:37.179Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database booking-app-2019 is valid
+[debug] [2019-06-02T20:26:37.193Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/booking-app-2019/versions  
+
+[debug] [2019-06-02T20:26:49.025Z] <<< HTTP RESPONSE 503
+[debug] [2019-06-02T20:26:49.025Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-06-02T20:26:49.639Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Sun, 02 Jun 2019 20:26:49 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,44,43,39\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/booking-app-2019/versions",
+        "path": "/v1beta1/sites/booking-app-2019/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/booking-app-2019/versions"
+      },
+      "method": "POST"
+    }
+  }
+}

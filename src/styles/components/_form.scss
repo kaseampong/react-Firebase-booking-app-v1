@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    >* {
+      margin-bottom: $m-size;
+    }
+    >h1{
+      font-size:$m-size;
+    }
+  }
+  
+  
+
+  .form__error {
+    margin: 0 0 0 0;
+    padding:0 0 0 0;
+    font-size:$font-size-small;
+    color:red;
+  }

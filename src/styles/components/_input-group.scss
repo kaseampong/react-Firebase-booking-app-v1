@@ -1,0 +1,8 @@
+.input-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    >label{
+        text-align: left;
+    }
+}
