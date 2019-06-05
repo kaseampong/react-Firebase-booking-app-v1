@@ -49,20 +49,19 @@ onSubmit = (e) => {
         <FormGroup>
           <Label for="reg_no">Reg No</Label>
           <Input
-          bsSize="sm"
+          bsSize="md"
             type="text"
             name="reg_no"
             id="reg_no"
             value={this.state.reg_no}
             onChange={this.onRegNoChange}
             required
-
              />
         </FormGroup>
         <FormGroup>
           <Label for="password">Password</Label>
           <Input 
-          bsSize="sm"
+          bsSize="md"
           type="password"
            name="password"
             id="password"
@@ -71,9 +70,9 @@ onSubmit = (e) => {
           required
              />
         </FormGroup>
-       {this.props.authStatus && <p className="form__error mb-2">{this.props.authStatus}</p>}
-        <div className="box-layout__header" >
-        <Button color="primary">Log in</Button>
+       {this.props.authStatus && <p className="form__error  mb-2">{this.props.authStatus}</p>}
+        <div className="box-layout__header " >
+        <Button color="primary" className="mt-3">Log in</Button>
         
         </div>
         <div className="d-flex justify-content-between mt-3">

@@ -16,15 +16,18 @@ export  class ViewRoomsFormPage extends React.Component {
   };
   render() {
     return (
-   
+      <div>
+      <div className="page-header">
+         <h1 className="page-header__title text-center">View Rooms</h1>
+     </div>
   <Container fluid >
-  <h4 className="text-center form__header mt-3">View Rooms</h4>
   <div className="text-center mt-3">{this.props.reg_no}</div>
 
         <Row  >
         <Col
-        className="mt-5 pt-2"
-        xs={{ size: 6, offset: 3 }}
+        className="mt-4 pt-2"
+        sm={{ size: 10, offset: 1 }}
+        md={{ size: 6, offset: 3 }}
         >
           <ViewRoomsForm
            onSubmit={this.onSubmit}
@@ -32,6 +35,7 @@ export  class ViewRoomsFormPage extends React.Component {
            </Col>
            </Row>
         </Container>
+        </div>
     );
   }
 }

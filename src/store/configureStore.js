@@ -34,7 +34,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['booking','auth','hostel']
+  blacklist: ['booking','auth','hostel','payment']
 }
  
 const persistedReducer = persistReducer(persistConfig, rootReducer)

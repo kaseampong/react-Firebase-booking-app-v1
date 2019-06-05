@@ -45,7 +45,7 @@ onSubmit = (e) => {
      <Form onSubmit={this.onSubmit}>
        
        <FormGroup>
-          <Label for="hostel" className="font-weight-bolder">Select academic year</Label>
+          <Label for="hostel" >Select academic year</Label>
           <Input  
           bsSize="lg" 
           type="select" 
@@ -62,7 +62,7 @@ onSubmit = (e) => {
           </Input>
         </FormGroup>
         <div className="box-layout__header" >
-        <Button color="primary">View Booking</Button>
+        <Button color="primary" className="mt-3">View Booking</Button>
         </div>
       </Form>
       

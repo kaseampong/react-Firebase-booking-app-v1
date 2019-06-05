@@ -14,14 +14,18 @@ export  class BookingFormPage extends React.Component {
   };
   render() {
     return (
+      <div>
+         <div className="page-header">
+            <h1 className="page-header__title text-center">Booking</h1>
+        </div>
   <Container fluid >
-  <h4 className="text-center form__header mt-3">Booking</h4>
   <div className="text-center mt-3">{this.props.reg_no}</div>
 
         <Row  >
         <Col
         className="mt-4 "
-        xs={{ size: 6, offset: 3 }}
+        sm={{ size: 10, offset: 1 }}
+        md={{ size: 6, offset: 3 }}
         >
          <BookingForm
            onSubmit={this.onSubmit}
@@ -31,6 +35,7 @@ export  class BookingFormPage extends React.Component {
            </Row>
      
         </Container>
+        </div>
     );
   }
 }

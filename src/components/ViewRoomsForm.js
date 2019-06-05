@@ -40,7 +40,7 @@ onSubmit = (e) => {
         <Form onSubmit={this.onSubmit}>
        {/* {this.props.authStatus && <p className="form__error">{this.props.authStatus}</p>} */}
        <FormGroup>
-          <Label for="hostel" className="font-weight-bolder">Select Hostel</Label>
+          <Label for="hostel" >Select Hostel</Label>
           <Input  
           bsSize="lg" 
           type="select" 
@@ -58,7 +58,7 @@ onSubmit = (e) => {
           </Input>
         </FormGroup>
         <div className="box-layout__header" >
-        <Button color="primary">View Rooms</Button>
+        <Button color="primary" className="mt-3">View Rooms</Button>
         </div>
       </Form>
       

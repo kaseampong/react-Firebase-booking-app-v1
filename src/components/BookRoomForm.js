@@ -51,7 +51,7 @@ onSubmit = (e) => {
     return (
           <Form onSubmit={this.onSubmit}>
              <FormGroup>
-          <Label for="hostel" className="font-weight-bolder">Select Hostel</Label>
+          <Label for="hostel" >Select Hostel</Label>
           <Input  
           bsSize="lg" 
           type="select" 
@@ -73,8 +73,8 @@ onSubmit = (e) => {
           </Input>
         </FormGroup>
        
-       <FormGroup>
-          <Label for="room_name">Enter Room name</Label>
+       <FormGroup >
+          <Label for="room_name" className="mt-2">Enter Room name</Label>
 
           <Input
           bsSize="lg"
@@ -88,7 +88,7 @@ onSubmit = (e) => {
         </FormGroup>
        {this.props.message && <p className="form__error mb-2">{this.props.message}</p>}
         <div className="box-layout__header" >
-        <Button color="primary">Submit</Button>
+        <Button color="primary" className="mt-3">Book Room</Button>
         </div>
       </Form>
     );

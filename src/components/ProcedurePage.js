@@ -5,14 +5,16 @@ import{Container,ListGroup,ListGroupItem,Table,Row,Col} from 'reactstrap';
 
 export const ProcedurePage = (props) => {
   return (
+    <div>
+      <div className="page-header">
+         <h1 className="page-header__title text-center">How to Book</h1>
+     </div>
 <Container fluid>
 <Container>
-
-<h4 className="text-center form__header mt-3">How To Book</h4>
 <div className="text-center mt-3">{props.reg_no}</div>
-
 </Container>
 </Container>
+</div>
     
   );
 };

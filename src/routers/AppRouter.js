@@ -9,8 +9,11 @@ import ViewBookingPage from '../components/ViewBookingPage';
 import RoomsPage from '../components/RoomsPage';
 import BookRoomFormPage from '../components/BookRoomFormPage';
 import BookingFormPage from '../components/BookingFormPage';
-import Dashboard from '../components/Dashboard';
-import ConfirmSuccessPage from '../components/ConfirmSuccessPage';
+import DashboardPage from '../components/DashboardPage';
+import BookingSuccessPage from '../components/BookingSuccessPage';
+import PaymentSuccessPage from '../components/PaymentSuccessPage';
+import PaymentFormPage from '../components/PaymentFormPage';
+import PaymentDashboardPage from '../components/PaymentDashboardPage';
 import ProcedurePage from '../components/ProcedurePage';
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
@@ -24,11 +27,14 @@ const AppRouter = () => (
       <Switch>
       <PublicRoute path="/" component={LoginFormPage} exact={true} />
       <PublicRoute path="/signup" component={SignUpFormPage}  />
-      <PrivateRoute path="/dashboard" component={Dashboard}  />
+      <PrivateRoute path="/dashboard" component={DashboardPage}  />
       <PrivateRoute path="/viewBooking/form" component={BookingFormPage}  />
       <PrivateRoute path="/view" component={ViewRoomsFormPage}  />
       <PrivateRoute path="/booking" component={ViewBookingPage}  />
-      <PrivateRoute path="/booked/success" component={ConfirmSuccessPage}  />
+      <PrivateRoute path="/booked/success" component={BookingSuccessPage}  />
+      <PrivateRoute path="/paid/success" component={PaymentSuccessPage}  />
+      <PrivateRoute path="/paymentForm" component={PaymentFormPage}  />
+      <PrivateRoute path="/payment" component={PaymentDashboardPage}  />
       <PrivateRoute path="/help" component={ProcedurePage}  />
       <PrivateRoute path="/rooms" component={RoomsPage}  />
       <PrivateRoute path="/book" component={BookRoomFormPage}  />

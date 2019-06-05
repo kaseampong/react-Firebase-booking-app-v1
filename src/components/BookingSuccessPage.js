@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input,
 import { startViewBooking } from '../actions/booking';
 
 
-export class ConfirmSuccessPage extends React.Component {
+export class BookingSuccessPage extends React.Component {
  
   startViewBooking = () => {
     const details ={
@@ -19,18 +19,21 @@ export class ConfirmSuccessPage extends React.Component {
 };
   render() {
     return (
+      <div>
+      <div className="page-header">
+         <h1 className="page-header__title text-center">Booking  Successful</h1>
+     </div>
       <Container fluid>
        <Container>
       
-       <h4 className="text-center form__header mt-3">Booking Successful</h4>
        <div className="text-center mt-3">{this.props.reg_no}</div>
-      
              <Alert color="success">
-               You have successfully booked room. 
+               You have successfully booked room for academic Year <span>{this.props.academicYear}</span>. 
                <Button color="link" onClick={this.startViewBooking}>View Details</Button>
              </Alert>
        </Container>
        </Container>
+       </div>
     );
   }
 }
@@ -47,5 +50,5 @@ const mapDispatchToProps = (dispatch) => ({
   startViewBooking: (details) => dispatch(startViewBooking(details))
 });
   
-export default connect(mapStateToProps,mapDispatchToProps)(ConfirmSuccessPage);
+export default connect(mapStateToProps,mapDispatchToProps)(BookingSuccessPage);
   

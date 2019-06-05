@@ -2,6 +2,8 @@ import { combineReducers } from 'redux'
 import authReducer from "../reducers/auth";
 import bookingReducer from "../reducers/booking";
 import hostelReducer from "../reducers/hostel";
+import paymentReducer from "../reducers/payment";
+
 import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from 'redux-persist'
 
@@ -26,10 +28,19 @@ const hostelPersistConfig = {
 
 }
 
+
+const paymentPersistConfig = {
+  key: 'payment',
+  storage: storage,
+  whitelist: ['paymentId','academicYear','amountPaid','regNo']
+
+}
+
 export default combineReducers({
           auth:  persistReducer(authPersistConfig, authReducer),
           booking: persistReducer(bookingPersistConfig, bookingReducer),
           hostel:persistReducer(hostelPersistConfig, hostelReducer),
+          payment:persistReducer(paymentPersistConfig, paymentReducer)
 })
 
 

@@ -8,9 +8,7 @@ export default class SignUpForm extends React.Component {
 
     this.state = {
       regNo: '',
-      firstname:'',
-      lastname:'',
-      email:'',
+      userName:'',
       gender:'',
       passwordone:'',
       passwordtwo:'',
@@ -21,18 +19,11 @@ export default class SignUpForm extends React.Component {
     const regNo = e.target.value;
     this.setState(() => ({ regNo }));
   };
-  onFirstnameChange = (e) => {
-    const firstname = e.target.value;
-    this.setState(() => ({ firstname }));
+  onUserNameChange = (e) => {
+    const userName = e.target.value;
+    this.setState(() => ({ userName }));
   };
-  onLastnameChange = (e) => {
-    const lastname = e.target.value;
-      this.setState(() => ({ lastname }));
-  };
-  onEmailChange = (e) => {
-    const email = e.target.value;
-    this.setState(() => ({ email }));
-  };
+ 
   onGenderChange = (e) => {
     const gender = e.target.value;
     this.setState(() => ({ gender }));
@@ -55,15 +46,15 @@ export default class SignUpForm extends React.Component {
     this.setState(() => ({ error: '' }));
     let today = new Date();  
     let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time=today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
     const user ={
       regNo:this.state.regNo.toUpperCase(),
-      firstName:this.state.firstname,
-      lastName:this.state.lastname,
-      email:this.state.email,
+      userName:this.state.userName,
       userGender:this.state.gender,
       password:this.state.passwordtwo,
-      createdAt: date
+      createdDate: date,
+      createdTime:time
     }
     this.props.onSubmit(user);
   }
@@ -73,7 +64,6 @@ export default class SignUpForm extends React.Component {
   render() {
     return (
         <Form  onSubmit={this.onSubmit}>
-            {this.state.error && <p className="form__error">{this.state.error}</p>}
         <FormGroup>
           <Label for="regNo">Reg No</Label>
           <Input 
@@ -85,34 +75,19 @@ export default class SignUpForm extends React.Component {
            onChange={this.onRegNoChange}
            required />
         </FormGroup>
-      <Row form>
-      <Col md={6}>
+      {/* <Row form> */}
+      {/* <Col md={6}> */}
         <FormGroup>
-          <Label for="firstname">First name</Label>
+          <Label for="username">Username</Label>
           <Input 
           bsSize="sm" 
           type="text" 
-          name="firstname" 
-          id="firstname"
-          value={this.state.firstname}
-          onChange={this.onFirstnameChange} 
+          name="username" 
+          id="username"
+          value={this.state.userName}
+          onChange={this.onUserNameChange} 
           required />
         </FormGroup>
-      </Col>
-      <Col md={6}>
-        <FormGroup>
-          <Label for="lastname">Last name</Label>
-          <Input 
-          bsSize="sm"  
-          type="text" 
-          name="lastname" 
-          id="lastname"
-          value={this.state.lastname}
-          onChange={this.onLastnameChange}
-          required  />
-        </FormGroup>
-      </Col>
-    </Row>
     <FormGroup>
           <Label for="gender">Gender</Label>
           <Input  
@@ -128,19 +103,6 @@ export default class SignUpForm extends React.Component {
             <option>Female</option>
           </Input>
         </FormGroup>
-   <FormGroup>
-              <Label for="email">Email</Label>
-              <Input 
-              bsSize="sm"  
-              type="email" 
-              name="email" 
-              id="email" 
-              value={this.state.email}
-              onChange={this.onEmailChange}
-              required />
-            </FormGroup>
-            <Row form>
-      <Col md={6}>
         <FormGroup>
           <Label for="password">Password</Label>
           <Input  
@@ -152,8 +114,6 @@ export default class SignUpForm extends React.Component {
           onChange={this.onPasswordoneChange}
           required />
         </FormGroup>
-      </Col>
-      <Col md={6}>
         <FormGroup>
           <Label for="password">Confirm Password</Label>
           <Input 
@@ -165,10 +125,8 @@ export default class SignUpForm extends React.Component {
           onChange={this.onPasswordtwoChange}
           required />
         </FormGroup>
-      </Col>
-    </Row>
+    {this.state.error && <p className="form__error">{this.state.error}</p>}
     {this.props.message && this.props.message === 'You have registered successfully'?<Alert className=" mb-2" color="success">{this.props.message} </Alert>:<p className="form__error mb-2">{this.props.message}</p>}
-
     <div className="box-layout__header" >
         <Button color="primary">Sign Up</Button>
         </div>

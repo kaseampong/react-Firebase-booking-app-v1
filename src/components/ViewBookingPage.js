@@ -8,11 +8,14 @@ import Booking from './Booking';
 export const ViewBookingPage = (props) => {
 
 return (
+  <div>
+      <div className="page-header">
+         <h1 className="page-header__title text-center">My Booking</h1>
+     </div>
 <Container fluid>
 <Container>
 
-<h4 className="text-center form__header mt-3">My Booking</h4>
-<div className="text-center mt-3">{props.reg_no}</div>
+<div className="text-center mt-3 mb-3">{props.reg_no}</div>
 
 {
     props.booking.length === 0 ? (
@@ -37,6 +40,7 @@ return (
     } 
 </Container>
 </Container>
+</div>
 );
 };
   const mapStateToProps = (state) => {

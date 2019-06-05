@@ -17,9 +17,9 @@ export const setBooking = (booking) => ({
 
 
 // SUCCESS_BOOKING
-export const successBooking = (booking_details) => ({
+export const successBooking = (message) => ({
   type: 'SUCCESS_BOOKING',
-  booking_details
+  message
 });
 
 
@@ -30,39 +30,46 @@ export const failedBooking = (message) => ({
 });
 
 
-
 export const startViewRooms = ({hostelName}) => {
   return (dispatch, getState) => {
     // const uid = getState().auth.uid;
-    return database.ref(`hostels/${hostelName}/rooms`).once('value').then((snapshot) => {
-      const rooms = [];
-      snapshot.forEach((childSnapshot) => {
-        rooms.push({
-          room_name: childSnapshot.key,
-          ...childSnapshot.val()
+    return database.ref(`hostels/${hostelName}/rooms`).orderByKey().once('value').then((snapshot) => {
+      if(snapshot.exists()){
+        const rooms = [];
+        snapshot.forEach((childSnapshot) => {
+          rooms.push({
+            room_name: childSnapshot.key,
+            ...childSnapshot.val()
+          });
+        dispatch(setRooms(rooms));
         });
-      dispatch(setRooms(rooms));
-      });
-
+      }else{
+        const rooms = [];
+        dispatch(setRooms(rooms));
+      }
+     
     });
   };
 };
 
 
-
+// VIEW BOOKING
 export const startViewBooking = (userData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     const {
       academicYear = ''
     } = userData;
-    return database.ref(`bookings/${uid}`).orderByChild('academicYear').equalTo(academicYear).limitToFirst(1).once('value').then((snapshot) => {
+
+    const details = `${academicYear}_${uid}`;
+    return database.ref(`bookings`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
       if (snapshot.exists()) {
           const booking  = [];
           snapshot.forEach((childSnapshot) => {
             booking.push({
               bookingId: childSnapshot.key,
-              ...childSnapshot.val()
+              ...childSnapshot.val(),
+              academicYear
             });
             
           });
@@ -75,7 +82,7 @@ export const startViewBooking = (userData = {}) => {
 };
 
 
-
+// BOOK ROOM
 export const startBookRoom = (userData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
@@ -91,14 +98,15 @@ export const startBookRoom = (userData = {}) => {
     } = userData;
 
     // check if user has already booked
-    return database.ref(`bookings/${uid}`).orderByChild('academicYear').equalTo(academicYear).limitToFirst(1).once('value').then((snapshot) => {
+    const details = `${academicYear}_${uid}`;
+    return database.ref(`bookings`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
       if (snapshot.exists()) {
         const message='You have already booked room';
         dispatch(failedBooking(message));
         
          } else {
   // check if user has paid the required amount
-  return database.ref(`payments/${uid}`).orderByChild('academicYear').equalTo(academicYear).limitToFirst(1).once('value').then((snapshot) => {
+  return database.ref(`payments`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
     if (snapshot.exists()) {
       let user  = {};
           snapshot.forEach((childSnapshot) => {
@@ -126,8 +134,8 @@ export const startBookRoom = (userData = {}) => {
           dispatch(failedBooking(message));
         } else {
            // BOOK ROOM
-          const booking = { regNo:regNo,roomName,bookingDate,bookingTime,academicYear,hostelName };
-           return database.ref(`bookings/${uid}`).push(booking).then((ref) => {
+          const booking = { regNo:regNo,roomName,bookingDate,bookingTime,academicYear:details,hostelName };
+           return database.ref(`bookings`).push(booking).then((ref) => {
 
             //update number of beds after each booking
               const newCapacity = beds - 1;
@@ -165,4 +173,5 @@ export const startBookRoom = (userData = {}) => {
     }});
   };
 };
+
 

@@ -1,6 +1,6 @@
 // Booking Reducer
 
-const BookingReducerDefaultState = {booking:[],message:''};
+const BookingReducerDefaultState = {booking:[], message:'', paymentMessage:''};
 
 export default (state = BookingReducerDefaultState, action) => {
   switch (action.type) {
@@ -15,6 +15,7 @@ export default (state = BookingReducerDefaultState, action) => {
         ...state,
         message:action.message
       };
+     
       case 'LOGOUT':
       return {};
     default:

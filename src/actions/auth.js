@@ -1,5 +1,6 @@
 import AppRouter, { history } from '../routers/AppRouter';
 import database from '../firebase/firebase';
+import {startSetPaymentDetails} from './payment';
 
 
 export const loginSuccess = (user) => ({
@@ -70,7 +71,8 @@ export const startSignUp = (userData = {}) => {
       email = '',
       firstName = '',
       lastName='',
-      createdAt='',
+      createdDate='',
+      createdTime='',
       userGender=''
 
     } = userData;
@@ -113,6 +115,7 @@ export const startLogin = (userData = {}) => {
             sessionStorage.setItem("uid", user.uid);
             dispatch(loginSuccess({regNo:user.regNo,uid:user.uid,userGender:user.userGender,academicYear:'2018/2019'}));
             dispatch(resetAuth());
+            dispatch(startSetPaymentDetails());
             history.push('/dashboard');
           } else {
             let message = `You have entered wrong password `;
@@ -135,4 +138,5 @@ export const startLogout = () => {
        history.push('/');
   };
 };
+
 
