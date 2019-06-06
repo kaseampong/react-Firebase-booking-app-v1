@@ -23,7 +23,7 @@ export  class SignUpFormPage extends React.Component {
  <div className="box-layout__header">
 
 {/* <img src="/images/logo.png"  height='50' width='140' /> */}
-<h1 className="box-layout__title mb-4">Room-booking-app</h1>
+<h1 className="box-layout__title mb-2">Room-booking-app</h1>
 
 </div>
           <SignUpForm

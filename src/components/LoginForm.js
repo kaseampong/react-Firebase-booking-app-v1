@@ -79,9 +79,7 @@ onSubmit = (e) => {
         {/* <Link  to="/" className="  ">
           Forgot Password?
           </Link> */}
-        <Link  to="/signup" className="  ">
-          Sign Up
-          </Link>
+       <span color="primary">Not registered?</span> <Link  to="/signup" className="  "> Sign Up</Link>
         </div>
       </Form>
     );
