@@ -11,13 +11,19 @@ export const RoomsPage = (props) => {
           label: 'Room_name',
           field: 'room_name',
           sort: 'asc',
-          width: 150
+          width: 200
         },
         {
           label: 'Beds',
           field: 'beds',
           sort: 'asc',
-          width: 270
+          width: 200
+        },
+        {
+          label: 'Gender',
+          field: 'gender',
+          sort: 'asc',
+          width: 200
         }
       
       ],

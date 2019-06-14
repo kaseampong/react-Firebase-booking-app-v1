@@ -9,7 +9,7 @@ export const Header = ({startLogout}) => (
   <Container fluid className="header">
   <Container className="header__content">
   <Link className="header__title" to="/dashboard">
-          <h1 className="header__title">Booking-app</h1>
+          <h1 className="header__title">booking-app</h1>
           </Link>
         <button className="button button--link" onClick={startLogout}>Logout</button>
 

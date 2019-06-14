@@ -18,7 +18,7 @@ export class LoginFormPage extends React.Component {
     return (
         <Container fluid className="box-layout ">
         <Col
-        className="box-layout__box" 
+        className="box-layout__box " 
         xs={11}
         sm={6}
         md={4}

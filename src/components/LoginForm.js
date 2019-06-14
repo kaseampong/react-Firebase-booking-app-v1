@@ -76,10 +76,11 @@ onSubmit = (e) => {
         
         </div>
         <div className="d-flex justify-content-between mt-3">
+
         {/* <Link  to="/" className="  ">
           Forgot Password?
           </Link> */}
-       <span color="primary">Not registered?</span> <Link  to="/signup" className="  "> Sign Up</Link>
+        <Link  to="/signup" className="  "> Sign Up</Link>
         </div>
       </Form>
     );
