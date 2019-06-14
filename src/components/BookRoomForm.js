@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input,
   Container, Row, Col,Alert } from 'reactstrap';
@@ -75,9 +74,8 @@ onSubmit = (e) => {
        
        <FormGroup >
           <Label for="room_name" className="mt-2">Enter Room name</Label>
-
           <Input
-          bsSize="lg"
+            bsSize="lg"
             type="text"
             name="room_name"
             id="room_name"
@@ -86,7 +84,8 @@ onSubmit = (e) => {
             required
              />
         </FormGroup>
-       {this.props.message && <p className="form__error mb-2">{this.props.message}</p>}
+       {this.props.message && this.props.message === "You have already booked room" ?
+       <Alert color="success" className="mb-2">{this.props.message}</Alert>:<p className="form__error mb-2">{this.props.message}</p>}
         <div className="box-layout__header" >
         <Button color="primary" className="mt-3">Book Room</Button>
         </div>
