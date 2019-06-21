@@ -39,27 +39,31 @@ export default class SignUpForm extends React.Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
+    if(!this.state.passwordone.match(/.{8,}/)){
+      this.setState(() => ({ error: 'Password must contain at least 8 characters.' }));
 
-  if (this.state.passwordone !== this.state.passwordtwo) {
-    this.setState(() => ({ error: 'Passwords are not matching.' }));
-  } else {
-    this.setState(() => ({ error: '' }));
-    let today = new Date();  
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    let time=today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
-    const user ={
-      regNo:this.state.regNo.toUpperCase(),
-      userName:this.state.userName,
-      userGender:this.state.gender,
-      password:this.state.passwordtwo,
-      createdDate: date,
-      createdTime:time
+    }else{
+        this.setState(() => ({ error: '' }));
+      if (this.state.passwordone !== this.state.passwordtwo) {
+        this.setState(() => ({ error: 'Passwords are not matching.' }));
+      } else {
+        this.setState(() => ({ error: '' }));
+        let today = new Date();  
+        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        let time=today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    
+        const user ={
+          regNo:this.state.regNo.toUpperCase(),
+          userName:this.state.userName,
+          userGender:this.state.gender,
+          password:this.state.passwordtwo,
+          createdDate: date,
+          createdTime:time
+        }
+        this.props.onSubmit(user);
+      }
     }
-    this.props.onSubmit(user);
-  }
 
-  
   };
   render() {
     return (
@@ -75,8 +79,6 @@ export default class SignUpForm extends React.Component {
            onChange={this.onRegNoChange}
            required />
         </FormGroup>
-      {/* <Row form> */}
-      {/* <Col md={6}> */}
         <FormGroup>
           <Label for="username">Username</Label>
           <Input 

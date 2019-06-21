@@ -8,22 +8,19 @@ export const RoomsPage = (props) => {
     const data = {
       columns: [
         {
-          label: 'Room_name',
+          label: 'Room',
           field: 'room_name',
-          sort: 'asc',
-          width: 200
+          sort: 'asc'
         },
         {
           label: 'Beds',
           field: 'beds',
-          sort: 'asc',
-          width: 200
+          sort: 'asc'
         },
         {
           label: 'Gender',
           field: 'gender',
-          sort: 'asc',
-          width: 200
+          sort: 'asc'
         }
       
       ],

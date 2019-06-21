@@ -17,7 +17,7 @@ export  class SignUpFormPage extends React.Component {
         className="box-layout__box " 
         xs={11}
         sm={6}
-        md={4}
+        md={5}
         lg={3}
         >
  <div className="box-layout__header">
