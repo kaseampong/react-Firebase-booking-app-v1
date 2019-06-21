@@ -118,12 +118,12 @@ export const startLogin = (userData = {}) => {
             dispatch(startSetPaymentDetails());
             history.push('/dashboard');
           } else {
-            let message = `You have entered wrong password `;
+            let message = `Wrong password. `;
             dispatch(loginFail(message));
           }
   
          } else {
-          let message = `user does not exist `;
+          let message = `User does not exist. `;
           dispatch(loginFail(message));
 
     }});
