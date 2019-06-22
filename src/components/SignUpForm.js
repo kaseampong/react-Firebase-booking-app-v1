@@ -128,7 +128,7 @@ export default class SignUpForm extends React.Component {
           required />
         </FormGroup>
     {this.state.error && <p className="form__error">{this.state.error}</p>}
-    {this.props.message && this.props.message === 'You have registered successfully'?<Alert className=" mb-2" color="success">{this.props.message} </Alert>:<p className="form__error mb-2">{this.props.message}</p>}
+    {this.props.message === 'You have registered successfully.'?<Alert className="mb-2" color="success">{this.props.message} </Alert>:<p className="form__error mb-2" color="danger">{this.props.message}</p>}
     <div className="box-layout__header" >
         <Button color="primary">Sign Up</Button>
         </div>
@@ -136,7 +136,6 @@ export default class SignUpForm extends React.Component {
           Log in
           </Link>
     </Form>
-
     )
   }
 }

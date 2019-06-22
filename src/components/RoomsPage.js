@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { MDBDataTable } from 'mdbreact';
 import{Container,Alert,ListGroup,ListGroupItem,Table,Row,Col} from 'reactstrap';
 
-
 export const RoomsPage = (props) => {
     const data = {
       columns: [
@@ -43,12 +42,13 @@ export const RoomsPage = (props) => {
       </Alert>
         ) : 
         (
-   
+<Container className="content-container">
     <MDBDataTable
       striped
       hover
       data={data}
     />
+</Container>
   
   )
       } 

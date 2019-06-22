@@ -84,7 +84,7 @@ onSubmit = (e) => {
             required
              />
         </FormGroup>
-       {this.props.message && this.props.message === "You have already booked room" ?
+       {this.props.message === "You have already booked room." ?
        <Alert color="success" className="mb-2">{this.props.message}</Alert>:<p className="form__error mb-2">{this.props.message}</p>}
         <div className="box-layout__header" >
         <Button color="primary" className="mt-3">Book Room</Button>

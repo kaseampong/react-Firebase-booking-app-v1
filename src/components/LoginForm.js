@@ -63,9 +63,9 @@ onSubmit = (e) => {
           <Input 
           bsSize="md"
           type="password"
-           name="password"
-            id="password"
-           value={this.state.password}
+          name="password"
+          id="password"
+          value={this.state.password}
           onChange={this.onPasswordChange}
           required
              />
@@ -73,14 +73,12 @@ onSubmit = (e) => {
        {this.props.authStatus && <p className="form__error  mb-2">{this.props.authStatus}</p>}
         <div className="box-layout__header " >
         <Button color="primary" className="mt-3">Log in</Button>
-        
         </div>
         <div className="d-flex justify-content-between mt-3">
-
-        {/* <Link  to="/" className="  ">
-          Forgot Password?
-          </Link> */}
         <Link  to="/signup" className="  "> Sign Up</Link>
+         <Link  to="/" className="  ">
+          Forgot Password?
+          </Link> 
         </div>
       </Form>
     );

@@ -79,13 +79,13 @@ export const startSignUp = (userData = {}) => {
 
     return database.ref(`users`).orderByChild('regNo').equalTo(regNo).limitToFirst(1).once('value').then((snapshot) => {
          if (snapshot.exists()) {
-             let message= `${regNo} already exists in the system`;
+             let message= `${regNo} already exists in the system.`;
              dispatch(signUpFail(message));
          } else {
 
          //sign up user
          return database.ref(`users`).push(userData).then((ref) => {
-          let message = `You have registered successfully`;
+          let message = `You have registered successfully.`;
           dispatch(signUpSuccess(message));
         });
     }});

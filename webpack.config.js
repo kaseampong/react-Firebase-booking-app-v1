@@ -12,8 +12,6 @@ if (process.env.NODE_ENV === 'test') {
 
 module.exports = (env) => {
   const isProduction = env === 'production';
-  // const CSSExtract = new ExtractTextPlugin('styles.css');
-
   return {
     entry: ["@babel/polyfill", './src/app.js'],
     output: {
@@ -37,22 +35,7 @@ module.exports = (env) => {
           'css-loader',
           'sass-loader',
         ]
-        // use: CSSExtract.extract({
-        //   use: [
-        //     {
-        //       loader: 'css-loader',
-        //       options: {
-        //         sourceMap: true
-        //       }
-        //     },
-        //     {
-        //       loader: 'sass-loader',
-        //       options: {
-        //         sourceMap: true
-        //       }
-        //     }
-        //   ]
-        // })
+       
       }]
     },
     plugins: [

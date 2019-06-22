@@ -41,9 +41,7 @@ onSubmit = (e) => {
 
   render() {
     return (
-
      <Form onSubmit={this.onSubmit}>
-       
        <FormGroup>
           <Label for="hostel" >Select academic year</Label>
           <Input  
