@@ -45,7 +45,7 @@ export const startViewRooms = ({
         const rooms = [];
         snapshot.forEach((childSnapshot) => {
           rooms.push({
-            room_name: childSnapshot.key,
+            Room_name: childSnapshot.key,
             ...childSnapshot.val()
           });
           dispatch(setRooms(rooms));

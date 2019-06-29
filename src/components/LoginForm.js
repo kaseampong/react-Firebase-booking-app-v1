@@ -75,10 +75,10 @@ onSubmit = (e) => {
         <Button color="primary" className="mt-3">Log in</Button>
         </div>
         <div className="d-flex justify-content-between mt-3">
-        <Link  to="/signup" className="  "> Sign Up</Link>
          <Link  to="/" className="  ">
           Forgot Password?
           </Link> 
+        <Link  to="/signup" className="  "> Sign Up</Link>
         </div>
       </Form>
     );

@@ -8,17 +8,22 @@ export const RoomsPage = (props) => {
       columns: [
         {
           label: 'Room',
-          field: 'room_name',
+          field: 'Room_name',
           sort: 'asc'
         },
         {
           label: 'Beds',
-          field: 'beds',
+          field: 'Beds',
           sort: 'asc'
         },
         {
           label: 'Gender',
-          field: 'gender',
+          field: 'Gender',
+          sort: 'asc'
+        },
+        {
+          label: 'Room_type',
+          field: 'Room_type',
           sort: 'asc'
         }
       
@@ -34,7 +39,7 @@ export const RoomsPage = (props) => {
      </div>
 <Container fluid>
 <Container>
-<div className="text-center mt-3 mb-3">{props.reg_no}</div>
+<div className="text-center mt-3 mb-4">{props.reg_no}</div>
 {
       data.rows.length === 0 ? (
           <Alert color="primary" className="text-center mt-2">
@@ -42,14 +47,13 @@ export const RoomsPage = (props) => {
       </Alert>
         ) : 
         (
-<Container className="content-container">
+<Container fluid className="data-table ">
     <MDBDataTable
       striped
       hover
       data={data}
     />
 </Container>
-  
   )
       } 
 </Container>
