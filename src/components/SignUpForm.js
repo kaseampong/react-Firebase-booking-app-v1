@@ -8,7 +8,6 @@ export default class SignUpForm extends React.Component {
 
     this.state = {
       regNo: '',
-      userName:'',
       gender:'',
       passwordone:'',
       passwordtwo:'',
@@ -18,10 +17,6 @@ export default class SignUpForm extends React.Component {
   onRegNoChange = (e) => {
     const regNo = e.target.value;
     this.setState(() => ({ regNo }));
-  };
-  onUserNameChange = (e) => {
-    const userName = e.target.value;
-    this.setState(() => ({ userName }));
   };
  
   onGenderChange = (e) => {
@@ -54,7 +49,6 @@ export default class SignUpForm extends React.Component {
     
         const user ={
           regNo:this.state.regNo.toUpperCase(),
-          userName:this.state.userName,
           userGender:this.state.gender,
           password:this.state.passwordtwo,
           createdDate: date,
@@ -71,7 +65,8 @@ export default class SignUpForm extends React.Component {
         <FormGroup>
           <Label for="regNo">Reg No</Label>
           <Input 
-           bsSize="sm"
+           className="border border-secondary"
+           bsSize="md"
            type="text" 
            name="regNo" 
            id="regNo"
@@ -79,28 +74,18 @@ export default class SignUpForm extends React.Component {
            onChange={this.onRegNoChange}
            required />
         </FormGroup>
-        <FormGroup>
-          <Label for="username">Username</Label>
-          <Input 
-          bsSize="sm" 
-          type="text" 
-          name="username" 
-          id="username"
-          value={this.state.userName}
-          onChange={this.onUserNameChange} 
-          required />
-        </FormGroup>
     <FormGroup>
           <Label for="gender">Gender</Label>
-          <Input  
-          bsSize="sm" 
+          <Input
+          className="border border-secondary"
+          bsSize="md" 
           type="select" 
           name="gender" 
           id="gender"
           value={this.state.gender}
           onChange={this.onGenderChange}
           required>
-           <option></option>
+            <option value=""> -- Select -- </option>
             <option>Male</option>
             <option>Female</option>
           </Input>
@@ -108,7 +93,8 @@ export default class SignUpForm extends React.Component {
         <FormGroup>
           <Label for="password">Password</Label>
           <Input  
-          bsSize="sm" 
+          className="border border-secondary"
+          bsSize="md" 
           type="password" 
           name="passwordone" 
           id="passwordone" 
@@ -119,7 +105,8 @@ export default class SignUpForm extends React.Component {
         <FormGroup>
           <Label for="password">Confirm Password</Label>
           <Input 
-          bsSize="sm"  
+          className="border border-secondary"
+          bsSize="md"  
           type="password" 
           name="passwordtwo" 
           id="passwordtwo" 
@@ -127,8 +114,9 @@ export default class SignUpForm extends React.Component {
           onChange={this.onPasswordtwoChange}
           required />
         </FormGroup>
-    {this.state.error && <p className="form__error">{this.state.error}</p>}
-    {this.props.message === 'You have registered successfully.'?<Alert className="mb-2" color="success">{this.props.message} </Alert>:<p className="form__error mb-2" color="danger">{this.props.message}</p>}
+    {this.state.error && <p className="form__error mb-1">{this.state.error}</p>}
+    {this.props.message === 'You have registered successfully.'&& <Alert className="mb-2" color="success">{this.props.message} </Alert>}
+    {this.props.message === 'Registration number is already taken.'&& <p className="form__error mb-2" >{this.props.message} </p>}
     <div className="box-layout__header" >
         <Button color="primary">Sign Up</Button>
         </div>

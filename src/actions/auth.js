@@ -68,18 +68,14 @@ export const startSignUp = (userData = {}) => {
     const {
       regNo = '',
       password = '',
-      email = '',
-      firstName = '',
-      lastName='',
       createdDate='',
       createdTime='',
       userGender=''
-
     } = userData;
 
     return database.ref(`users`).orderByChild('regNo').equalTo(regNo).limitToFirst(1).once('value').then((snapshot) => {
          if (snapshot.exists()) {
-             let message= `${regNo} already exists in the system.`;
+             let message= `Registration number is already taken.`;
              dispatch(signUpFail(message));
          } else {
 
@@ -118,12 +114,12 @@ export const startLogin = (userData = {}) => {
             dispatch(startSetPaymentDetails());
             history.push('/dashboard');
           } else {
-            let message = `Wrong password. `;
+            let message = `Incorrect registration number or password.`;
             dispatch(loginFail(message));
           }
   
          } else {
-          let message = `User does not exist. `;
+          let message = `Incorrect registration number or password.`;
           dispatch(loginFail(message));
 
     }});

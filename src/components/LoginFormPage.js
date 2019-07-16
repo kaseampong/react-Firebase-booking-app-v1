@@ -32,7 +32,7 @@ export class LoginFormPage extends React.Component {
 </div>
           <LoginForm
             onSubmit={this.onSubmit}
-            authStatus={this.props.authStatus}
+            message={this.props.message}
           />
            </Col>
         </Container>
@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch) => ({
   
 const mapStateToProps = (state) => {
     return {
-      authStatus: state.auth.loginMessage,
+      message: state.auth.loginMessage,
     };
   };
   

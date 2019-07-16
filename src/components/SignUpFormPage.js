@@ -20,12 +20,11 @@ export  class SignUpFormPage extends React.Component {
         md={5}
         lg={3}
         >
- <div className="box-layout__header">
+    <div className="box-layout__header">
 
-{/* <img src="/images/logo.png"  height='50' width='140' /> */}
-<h1 className="box-layout__title mb-3">Room-booking-app</h1>
-
-</div>
+    {/* <img src="/images/logo.png"  height='50' width='140' /> */}
+   <h1 className="box-layout__title mb-3">Room-booking-app</h1>
+    </div>
           <SignUpForm
            onSubmit={this.onSubmit}
            message={this.props.message}

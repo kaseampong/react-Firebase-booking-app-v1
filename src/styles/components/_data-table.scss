@@ -1,4 +1,7 @@
 .data-table {
-   max-width: 60rem;
-  }
-  
+   font-size: $s-size;
+
+   @media (min-width: $desktop-breakpoint) {
+  font-size: $m-size;
+}
+}

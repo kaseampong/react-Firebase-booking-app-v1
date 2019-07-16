@@ -47,11 +47,13 @@ export const RoomsPage = (props) => {
       </Alert>
         ) : 
         (
-<Container fluid className="data-table ">
+<Container fluid className="content-container mt-2 ">
     <MDBDataTable
       striped
       hover
       data={data}
+      className="data-table"
+      responsiveSm
     />
 </Container>
   )
