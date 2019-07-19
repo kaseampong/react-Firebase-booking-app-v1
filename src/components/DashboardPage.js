@@ -1,25 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Container,Card, Button, CardImg, CardTitle, CardText, CardDeck,
-    CardSubtitle, CardBody,ListGroup,ListGroupItem ,Row,Col} from 'reactstrap';
-import Header from './Header';
+import { Container,Card, Button, CardImg,CardColumns, CardTitle, CardText, CardDeck,
+    CardSubtitle, CardBody,CardGroup,Row,Col} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBuilding, faBed,faKey, faQuestionCircle,faMoneyBillWave,faCoins }from '@fortawesome/free-solid-svg-icons'
 
 
 const DashboardPage = (props) => (
-      <div>
-      <div>
-            <div className="page-header">
-              <h1 className="page-header__title text-center">Online Booking</h1>
-            </div>
-            <Container fluid>
-            <Container >
-      <div className="text-center mt-3">{props.reg_no}</div>
-      <Row className="mt-3">
-          <Col sm="4">
-            <Card>
+<div>
+ <div>
+    <div className="page-header">
+        <h1 className="page-header__title text-center">Online Booking</h1>
+      </div>
+        <Container fluid>
+         <Container >
+        <div className="text-center mt-3">{props.reg_no}</div>
+          <Container fluid className="content-container mt-2 ">
+       <CardDeck> 
+          <Card>
             <CardBody>
             <div className="d-flex justify-content-center ">
             <FontAwesomeIcon icon={faBuilding} color="#696969"	 size="lg" />
@@ -30,8 +29,6 @@ const DashboardPage = (props) => (
               </div>
             </CardBody>
             </Card>
-          </Col>
-          <Col sm="4">
             <Card>
             <CardBody>
             <div className="d-flex justify-content-center">
@@ -43,8 +40,6 @@ const DashboardPage = (props) => (
               </div>
             </CardBody>
             </Card>
-          </Col>
-          <Col sm="4">
             <Card>
             <CardBody>
             <div className="d-flex justify-content-center ">
@@ -56,12 +51,9 @@ const DashboardPage = (props) => (
               </div>
             </CardBody>
             </Card>
-          </Col>
-        
-        </Row>
-        <Row className="mt-4">
-        <Col sm="4">
-            <Card>
+             </CardDeck> 
+       <CardDeck className="mt-md-3"> 
+       <Card>
             <CardBody>
             <div className="d-flex justify-content-center">
             <FontAwesomeIcon icon={faCoins} color="#696969" size="lg" />
@@ -72,8 +64,6 @@ const DashboardPage = (props) => (
               </div>
             </CardBody>
             </Card>
-          </Col>
-        <Col sm="4">
             <Card>
             <CardBody>
             <div className="d-flex justify-content-center">
@@ -85,14 +75,15 @@ const DashboardPage = (props) => (
               </div>
             </CardBody>
             </Card>
-          </Col>
-        </Row>
-            </Container>
-            </Container>
-            </div>
+            <Card className="border-0">
+            </Card>
+       </CardDeck> 
+</Container>
+</Container>
+</Container>
+        </div>
       </div>
 );
-
 
   
   const mapStateToProps = (state) => {

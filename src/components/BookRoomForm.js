@@ -49,7 +49,7 @@ onSubmit = (e) => {
   render() {
     return (
           <Form onSubmit={this.onSubmit}>
-             <FormGroup>
+          <FormGroup>
           <Label for="hostel" >Select Hostel</Label>
           <Input  
           bsSize="lg" 
@@ -59,7 +59,7 @@ onSubmit = (e) => {
           value={this.state.hostel_name}
           onChange={this.onHostelNameChange}
           required>
-           <option></option>
+            <option value=""> -- Select -- </option>
             <option>A</option>
             <option>B</option>
             <option>C</option>
@@ -68,10 +68,8 @@ onSubmit = (e) => {
             <option>F</option>
             <option>G</option>
             <option>TANA</option>
-
           </Input>
         </FormGroup>
-       
        <FormGroup >
           <Label for="room_name" className="mt-2">Enter Room name</Label>
           <Input

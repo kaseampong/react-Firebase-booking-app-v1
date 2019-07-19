@@ -2,9 +2,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input,
   Container, Row, Col,Alert } from 'reactstrap';
-import { startLogin } from '../actions/auth';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 export default class BookingForm extends React.Component {
   constructor(props) {
@@ -52,8 +50,8 @@ onSubmit = (e) => {
           value={this.state.academicYear}
           onChange={this.onacademicYearChange}
           required>
-           <option></option>
-           <option>2015/2016</option>
+            <option value=""> -- Select -- </option>
+            <option>2015/2016</option>
             <option>2016/2017</option>
             <option>2017/2018</option>
             <option>2018/2019</option>

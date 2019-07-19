@@ -52,14 +52,14 @@ export const RoomsPage = (props) => {
       striped
       hover
       data={data}
-      className="data-table"
       responsiveSm
+      className="data-table"
     />
 </Container>
   )
       } 
 </Container>
-  </Container>
+</Container>
   </div>
 
   );

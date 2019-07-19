@@ -49,8 +49,8 @@ onSubmit = (e) => {
           value={this.state.hostel}
           onChange={this.onHostelChange}
           required>
-           <option></option>
-           <option>A</option>
+            <option value=""> -- Select -- </option>
+            <option>A</option>
             <option>B</option>
             <option>C</option>
             <option>D</option>
