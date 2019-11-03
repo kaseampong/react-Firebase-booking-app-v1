@@ -1,9 +1,6 @@
 
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert } from 'reactstrap';
-import { startLogin } from '../actions/auth';
-import { connect } from 'react-redux';
+import { Button, Form, FormGroup, Label, Input,Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default  class LoginForm extends React.Component {
@@ -11,15 +8,15 @@ export default  class LoginForm extends React.Component {
     super(props);
 
     this.state = {
-      reg_no: '',
+      adm: '',
       password: '',
       error: ''
     };
   }
    
-onRegNoChange = (e) => {
-  const reg_no = e.target.value;
-  this.setState(() => ({ reg_no }));
+onAdmChange = (e) => {
+  const adm = e.target.value;
+  this.setState(() => ({ adm }));
 };
   onPasswordChange = (e) => {
   const password = e.target.value;
@@ -28,14 +25,15 @@ onRegNoChange = (e) => {
   
 onSubmit = (e) => {
   e.preventDefault();
+  this.setState(() => ({ error: '' }));
   
-  if (!this.state.reg_no || !this.state.password ) {
+  if (!this.state.adm || !this.state.password ) {
     this.setState(() => ({ error: 'Please provide all details.' }));
   
     } else {
       this.setState(() => ({ error: '' }));
       const user ={
-      regNo:this.state.reg_no.toUpperCase(),
+      adm:this.state.adm.toUpperCase(),
       password:this.state.password
     };
     this.props.onSubmit(user);
@@ -46,16 +44,16 @@ onSubmit = (e) => {
     return (
 
         <Form onSubmit={this.onSubmit}>
-        <FormGroup>
-          <Label for="reg_no">Reg No</Label>
+        <FormGroup> 
+          <Label for="adm">Reg No</Label>
           <Input
             className="border border-secondary"
             bsSize="md"
             type="text"
-            name="reg_no"
-            id="reg_no"
-            value={this.state.reg_no}
-            onChange={this.onRegNoChange}
+            name="adm"
+            id="adm"
+            value={this.state.adm}
+            onChange={this.onAdmChange}
             required
              />
         </FormGroup>
@@ -77,7 +75,7 @@ onSubmit = (e) => {
         <Button color="primary" className="mt-3">Log in</Button>
         </div>
         <div className="d-flex justify-content-between mt-3">
-         <Link  to="/" className="  ">
+         <Link  to="/" className="">
           Forgot Password?
           </Link> 
         <Link  to="/signup" className="  "> Sign Up</Link>

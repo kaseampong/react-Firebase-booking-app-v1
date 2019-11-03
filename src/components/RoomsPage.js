@@ -1,45 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { MDBDataTable } from 'mdbreact';
-import{Container,Alert,ListGroup,ListGroupItem,Table,Row,Col} from 'reactstrap';
+import{Container,Alert} from 'reactstrap';
+import PageHeader from './PageHeader';
 
 export const RoomsPage = (props) => {
     const data = {
       columns: [
         {
           label: 'Room',
-          field: 'Room_name',
-          sort: 'asc'
-        },
-        {
-          label: 'Beds',
-          field: 'Beds',
+          field: 'room',
           sort: 'asc'
         },
         {
           label: 'Gender',
-          field: 'Gender',
+          field: 'gender',
           sort: 'asc'
         },
         {
-          label: 'Room_type',
-          field: 'Room_type',
+          label: 'Room Type',
+          field: 'roomType',
+          sort: 'asc'
+        },
+        {
+          label: 'Vacant Beds',
+          field: 'vacantBeds',
           sort: 'asc'
         }
       
       ],
-      rows: props.rooms.map((room) => room)
+      rows: props.hostel.rooms.map((room) => room)
        
     };
   
   return (
     <div>
-      <div className="page-header">
-         <h1 className="page-header__title text-center">Rooms</h1>
-     </div>
+        <PageHeader title={`Hostel ${props.hostel.hostel}` || 'Rooms'}/>
+
 <Container fluid>
 <Container>
-<div className="text-center mt-3 mb-4">{props.reg_no}</div>
+<div className="text-center mt-3 mb-4">{props.adm}</div>
 {
       data.rows.length === 0 ? (
           <Alert color="primary" className="text-center mt-2">
@@ -66,8 +66,8 @@ export const RoomsPage = (props) => {
 };
   const mapStateToProps = (state) => {
     return {
-      rooms: state.hostel.rooms,
-      reg_no:state.auth.regNo
+      hostel: state.hostel,
+      adm:state.auth.adm
     };
   };
   

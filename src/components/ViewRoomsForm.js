@@ -1,33 +1,32 @@
 
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, } from 'reactstrap';
 
 export default class ViewRoomsForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hostel_name: '',
+      hostel: '',
       error: ''
     };
   }
 
 onHostelChange = (e) => {
-  const hostel_name = e.target.value;
-  this.setState(() => ({ hostel_name }));
+  const hostel = e.target.value;
+  this.setState(() => ({ hostel }));
 };
   
 onSubmit = (e) => {
   e.preventDefault();
   
-  if (!this.state.hostel_name ) {
+  if (!this.state.hostel ) {
     this.setState(() => ({ error: 'Please provide all details.' }));
   
     } else {
       this.setState(() => ({ error: '' }));
       const details ={
-      hostelName:this.state.hostel_name
+      hostel:this.state.hostel
     };
     this.props.onSubmit(details);
     };
@@ -37,8 +36,7 @@ onSubmit = (e) => {
     return (
 
 
-        <Form onSubmit={this.onSubmit}>
-       {/* {this.props.authStatus && <p className="form__error">{this.props.authStatus}</p>} */}
+        <Form  onSubmit={this.onSubmit}>
        <FormGroup>
           <Label for="hostel" >Select Hostel</Label>
           <Input  
@@ -50,11 +48,13 @@ onSubmit = (e) => {
           onChange={this.onHostelChange}
           required>
             <option value=""> -- Select -- </option>
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-            <option>D</option>
-            <option>Tana</option>
+            <option >A</option>
+            <option >B</option>
+            <option >C</option>
+            <option > D</option>
+            <option > E</option>
+            <option > F</option>
+            <option >Tana</option>
           </Input>
         </FormGroup>
         <div className="box-layout__header" >

@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter,{history} from './routers/AppRouter';
+import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
-import LoadingPage from './components/LoadingPage';
 import { PersistGate } from 'redux-persist/integration/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'normalize.css/normalize.css';
+// import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
 
-const store = configureStore();
+const config = configureStore();
+const{store,persistor} = config;
 const jsx = (
-  <Provider store={store.store}>
-  <PersistGate persistor={store.persistor}>
+  <Provider store={store}>
+  <PersistGate persistor={persistor}>
     <AppRouter />
     </PersistGate>
   </Provider>

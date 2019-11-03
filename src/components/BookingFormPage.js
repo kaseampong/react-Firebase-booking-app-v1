@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert,ListGroup,ListGroupItem } from 'reactstrap';
+import {Container, Row, Col } from 'reactstrap';
 import BookingForm from './BookingForm';
+import PageHeader from './PageHeader';
 import { startViewBooking} from '../actions/booking';
 
 
@@ -15,11 +15,9 @@ export  class BookingFormPage extends React.Component {
   render() {
     return (
           <div>
-             <div className="page-header">
-                <h1 className="page-header__title text-center">Booking</h1>
-            </div>
+            <PageHeader title='Booking'/>
       <Container fluid >
-      <div className="text-center mt-3">{this.props.reg_no}</div>
+      <div className="text-center mt-3">{this.props.adm}</div>
 
             <Row  >
             <Col
@@ -42,7 +40,7 @@ export  class BookingFormPage extends React.Component {
 const mapStateToProps = (state) => {
   return {
     message:state.booking.message,
-    reg_no:state.auth.regNo
+    adm:state.auth.adm
   };
 };
 

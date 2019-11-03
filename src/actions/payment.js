@@ -1,5 +1,5 @@
 import database from '../firebase/firebase';
-import AppRouter, { history } from '../routers/AppRouter';
+import { history } from '../routers/AppRouter';
 
 
 export const setPaymentDetails = (details) => ({
@@ -25,11 +25,12 @@ export const failedPayment = (message) => ({
 // SET_PAYMENT_DETAILS
 export const startSetPaymentDetails = () => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    const academicYear = getState().auth.academicYear;
-    const details = `${academicYear}_${uid}`;
-
-    return database.ref(`payments`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
+    
+    const academicYear = getState().hostel.academicYear;
+    const adm = getState().auth.adm;
+    const term = getState().hostel.term;
+    
+    return database.ref(`payments/${academicYear}/${adm}`).orderByChild('term').equalTo(term).once('value').then((snapshot) => {
       if (snapshot.exists()) {
         let user = {};
 
@@ -55,20 +56,19 @@ export const startSetPaymentDetails = () => {
 // MAKE PAYMENT
 export const startMakePayment = (userData = {}) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    const academicYear = getState().auth.academicYear;
-    const regNo = getState().auth.regNo;
+    const academicYear = getState().hostel.academicYear;
 
-    const {
-      amountPaid = 0,
-        paymentDate = '',
-        paymentTime = ''
+    let {
+       adm = '',
+       phone = '',
+       term = '',
+        amount = 0,
+        date = '',
+        time = ''
     } = userData;
 
-    const details = `${academicYear}_${uid}`;
-
     //check the if user has already made payment
-    return database.ref(`payments`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
+    return database.ref(`payments/${academicYear}/${adm}`).orderByChild('term').equalTo(term).once('value').then((snapshot) => {
 
       if (snapshot.exists()) {
         let user = {};
@@ -80,36 +80,29 @@ export const startMakePayment = (userData = {}) => {
           }
 
         });
-        //check the amount the user has paid
-        if (user.amountPaid >= 3500) {
-
-          const message = 'You have already paid required amount';
-          dispatch(failedPayment(message));
-
-        } else {
-          // make payment
-          const newAmount = user.amountPaid + amountPaid;
-          const update = {
-            amountPaid: newAmount
+        
+          let newAmount = user.amount + amount;
+          let update = {
+            amount: newAmount
           };
-          return database.ref(`payments/${user.paymentId}`).update(update).then((ref) => {
+          return database.ref(`payments/${academicYear}/${adm}/${user.paymentId}`).update(update).then((ref) => {
             const message = 'You have made payment successfully';
             dispatch(successPayment(message));
             dispatch(startSetPaymentDetails());
             history.push('/paid/success');
           })
-        }
+        
 
       } else {
         // make payment
         const payment = {
-          regNo: regNo,
-          amountPaid,
-          paymentDate,
-          paymentTime,
-          academicYear: details
+          phone,
+          amount,
+          term,
+          date,
+          time,
         };
-        return database.ref(`payments`).push(payment).then((ref) => {
+        return database.ref(`payments/${academicYear}/${adm}`).push(payment).then((ref) => {
           const message = 'You have made payment successfully';
           dispatch(successPayment(message));
           dispatch(startSetPaymentDetails());

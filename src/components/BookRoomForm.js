@@ -1,46 +1,58 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert } from 'reactstrap';
-import { startLogin } from '../actions/auth';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+Alert,FormText } from 'reactstrap';
+
 
 export default class BookRoomForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hostel_name:'',
-      room_name: '',
+      adm:props.adm ? props.adm : '',
+      gender:props.gender ? props.gender : '',
+      hostel:'',
+      room: '',
+      term:'',
       error: ''
     };
   }
    
+  onAdmChange = (e) => {
+    const adm = e.target.value;
+    this.setState(() => ({ adm }));
+  };
 onHostelNameChange = (e) => {
-    const hostel_name = e.target.value;
-    this.setState(() => ({ hostel_name }));
+    const hostel = e.target.value;
+    this.setState(() => ({ hostel }));
   };
 
 onRoomNameChange = (e) => {
-  const room_name = e.target.value;
-  this.setState(() => ({ room_name }));
+  const room = e.target.value;
+  this.setState(() => ({ room }));
+};
+onTermChange = (e) => {
+  const term = e.target.value;
+  this.setState(() => ({ term }));
 };
   
 onSubmit = (e) => {
   e.preventDefault();
-  if (!this.state.room_name ) {
+  if (!this.state.adm || !this.state.hostel || !this.state.room || !this.state.term ) {
     this.setState(() => ({ error: 'Please provide all details.' }));
     } else {
       this.setState(() => ({ error: '' }));
-      var today = new Date();
-      const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-      const time=today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      let today = new Date();
+      let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      let time=today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
    
     const details ={
-      hostelName:this.state.hostel_name.toUpperCase(),
-      roomName:this.state.room_name.toUpperCase(),
-      bookingDate:date,
-      bookingTime:time
+      adm:this.state.adm,
+      gender:this.state.gender,
+      hostel:this.state.hostel.toUpperCase(),
+      room:this.state.room.toUpperCase(),
+      term:this.state.term,
+      date,
+      time
     };
     this.props.onSubmit(details);
     };
@@ -49,6 +61,32 @@ onSubmit = (e) => {
   render() {
     return (
           <Form onSubmit={this.onSubmit}>
+             <FormGroup >
+          <Label for="adm" className="mt-2">Adm No</Label>
+          <Input
+            bsSize="lg"
+            type="text"
+            name="adm"
+            id="adm"
+            value={this.state.adm}
+            readOnly
+            required
+             />
+             <FormText>Confirm your admission number please.</FormText>
+        </FormGroup>
+        <FormGroup >
+          <Label for="gender" className="mt-2">Gender</Label>
+          <Input
+            bsSize="lg"
+            type="text"
+            name="gender"
+            id="gender"
+            value={this.state.gender}
+            readOnly
+            required
+             />
+             <FormText>Confirm your gender please.</FormText>
+        </FormGroup>
           <FormGroup>
           <Label for="hostel" >Select Hostel</Label>
           <Input  
@@ -56,31 +94,41 @@ onSubmit = (e) => {
           type="select" 
           name="hostel" 
           id="hostel"
-          value={this.state.hostel_name}
+          value={this.state.hostel}
           onChange={this.onHostelNameChange}
           required>
             <option value=""> -- Select -- </option>
             <option>A</option>
             <option>B</option>
             <option>C</option>
-            <option>D</option>
-            <option>E</option>
-            <option>F</option>
-            <option>G</option>
             <option>TANA</option>
           </Input>
         </FormGroup>
        <FormGroup >
-          <Label for="room_name" className="mt-2">Enter Room name</Label>
+          <Label for="room" className="mt-2">Room name</Label>
           <Input
             bsSize="lg"
             type="text"
-            name="room_name"
-            id="room_name"
-            value={this.state.room_name}
+            name="room"
+            id="room"
+            value={this.state.room}
             onChange={this.onRoomNameChange}
             required
              />
+        </FormGroup>
+        <FormGroup >
+          <Label for="term" className="mt-2">Term</Label>
+          <Input  
+          bsSize="lg" 
+          type="select" 
+          name="term" 
+          id="term"
+          value={this.state.term}
+          onChange={this.onTermChange}
+          required>
+            <option value=""> -- Select -- </option>
+            <option>SEMESTER 1 2019-2020</option>
+          </Input>
         </FormGroup>
        {this.props.message === "You have already booked room." ?
        <Alert color="success" className="mb-2">{this.props.message}</Alert>:<p className="form__error mb-2">{this.props.message}</p>}

@@ -14,33 +14,12 @@ const config = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
 
-// console.log("NODE_ENV",process.env.NODE_ENV) 
-// console.log("API_KEY",process.env.API_KEY)
-
-// console.log(config.databaseURL);
-// console.log(config.databaseURL);
 
   firebase.initializeApp(config);
-
-
-//   if (!firebase.apps.length) {
-//   firebase.initializeApp(config);
-// }
-
-// const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
   const database = firebase.database();
   const auth = firebase.auth();
 
-
-
 export { firebase, auth,database as default };
 
 
-//  firebase.database().ref().set({
-//      name:'james mogambi'
-//  });
-
-
-
-// console.log('I made a request to change the data.');

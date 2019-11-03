@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input, FormText,Alert } from 'reactstrap';
+import {  Button, Form, FormGroup, Label, Input,Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default class SignUpForm extends React.Component {
@@ -7,16 +7,16 @@ export default class SignUpForm extends React.Component {
     super(props);
 
     this.state = {
-      regNo: '',
+      adm: '',
       gender:'',
       passwordone:'',
       passwordtwo:'',
       error: ''
     };
   }
-  onRegNoChange = (e) => {
-    const regNo = e.target.value;
-    this.setState(() => ({ regNo }));
+  onAdmChange = (e) => {
+    const adm = e.target.value;
+    this.setState(() => ({ adm }));
   };
  
   onGenderChange = (e) => {
@@ -34,6 +34,8 @@ export default class SignUpForm extends React.Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
+    this.setState(() => ({ error: '' }));
+
     if(!this.state.passwordone.match(/.{8,}/)){
       this.setState(() => ({ error: 'Password must contain at least 8 characters.' }));
 
@@ -48,11 +50,11 @@ export default class SignUpForm extends React.Component {
         let time=today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     
         const user ={
-          regNo:this.state.regNo.toUpperCase(),
-          userGender:this.state.gender,
+          adm:this.state.adm.toUpperCase(),
+          gender:this.state.gender,
           password:this.state.passwordtwo,
-          createdDate: date,
-          createdTime:time
+          date,
+          time
         }
         this.props.onSubmit(user);
       }
@@ -63,15 +65,15 @@ export default class SignUpForm extends React.Component {
     return (
         <Form  onSubmit={this.onSubmit}>
         <FormGroup>
-          <Label for="regNo">Reg No</Label>
+          <Label for="adm">Reg No</Label>
           <Input 
            className="border border-secondary"
            bsSize="md"
            type="text" 
-           name="regNo" 
-           id="regNo"
-           value={this.state.regNo}
-           onChange={this.onRegNoChange}
+           name="adm" 
+           id="adm"
+           value={this.state.adm}
+           onChange={this.onAdmChange}
            required />
         </FormGroup>
     <FormGroup>
@@ -117,6 +119,7 @@ export default class SignUpForm extends React.Component {
     {this.state.error && <p className="form__error mb-1">{this.state.error}</p>}
     {this.props.message === 'You have registered successfully.'&& <Alert className="mb-2" color="success">{this.props.message} </Alert>}
     {this.props.message === 'Registration number is already taken.'&& <p className="form__error mb-2" >{this.props.message} </p>}
+
     <div className="box-layout__header" >
         <Button color="primary">Sign Up</Button>
         </div>

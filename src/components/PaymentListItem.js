@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
-import numeral from 'numeral';
 
 const PaymentListItem = (props) => (
   <Link className="list-item" to={`/payment/${props.academiYear}`}>

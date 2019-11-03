@@ -1,54 +1,80 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert ,ListGroup,ListGroupItem} from 'reactstrap';
-import Booking from './Booking';
-
+import { MDBDataTable } from 'mdbreact';
+import{Container,Alert} from 'reactstrap';
+import PageHeader from './PageHeader';
 
 export const ViewBookingPage = (props) => {
+    const data = {
+      columns: [
+        {
+          label: 'Session Booked',
+          field: 'term',
+          sort: 'asc'
+        },
+        {
+          label: 'Hostel',
+          field: 'hostel',
+          sort: 'asc'
+        },
+        {
+          label: 'Hostel Room',
+          field: 'room',
+          sort: 'asc'
+        },
+        {
+          label: 'Date Booked',
+          field: 'date',
+          sort: 'asc'
+        }
+      
+      
+      ],
+      rows: props.booking.map((booking) => booking)
+       
+    };
+  
+  return (
+    <div>
 
-return (
-  <div>
-      <div className="page-header">
-         <h1 className="page-header__title text-center">My Booking</h1>
-     </div>
+<PageHeader title='My Booking'/>
 <Container fluid>
 <Container>
-
-<div className="text-center mt-3 mb-3">{props.reg_no}</div>
-
+<div className="text-center mt-3 mb-4">{props.adm}</div>
 {
-    props.booking.length === 0 ? (
-         <Alert color="primary" className="text-center mt-2">
-         You have no Booking.
-         </Alert>
-      ) : 
-      (
-        <Row>
-          <Col sm={{ size: 8, offset: 2}} >
-          <ListGroup>
-
-{
-  props.booking.map((booking) => {
-    return <Booking key={booking.roomName} {...booking} />;
-  })
-}
-</ListGroup>
-          </Col>
-        </Row>
-)
-    } 
+      data.rows.length === 0 ? (
+          <Alert color="primary" className="text-center mt-2">
+          No booking available for academic year <span>{props.academicYear}</span>.
+      </Alert>
+        ) : 
+        (
+<Container fluid className="content-container mt-2 ">
+    <MDBDataTable
+      striped
+      hover
+      data={data}
+      responsiveSm
+      className="data-table"
+    />
+</Container>
+  )
+      } 
 </Container>
 </Container>
-</div>
-);
+  </div>
+
+  );
 };
+
   const mapStateToProps = (state) => {
     return {
       booking: state.booking.booking,
-      reg_no:state.auth.regNo
+      adm:state.auth.adm,
+      academicYear:state.hostel.academicYear
     };
   };
   
   export default connect(mapStateToProps)(ViewBookingPage);
+  
+  
   

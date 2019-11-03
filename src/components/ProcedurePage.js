@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import{Container,ListGroup,ListGroupItem,Table,Row,Col} from 'reactstrap';
+import{Container} from 'reactstrap';
+import PageHeader from './PageHeader';
 
 
 export const ProcedurePage = (props) => {
   return (
     <div>
-      <div className="page-header">
-         <h1 className="page-header__title text-center">How to Book</h1>
-     </div>
+        <PageHeader title='How to Book'/>
 <Container fluid>
 <Container>
-<div className="text-center mt-3">{props.reg_no}</div>
+<div className="text-center mt-3">{props.adm}</div>
 </Container>
 </Container>
 </div>
@@ -22,7 +21,7 @@ export const ProcedurePage = (props) => {
 
   const mapStateToProps = (state) => {
     return {
-      reg_no: state.auth.regNo
+      adm: state.auth.adm
     };
   };
   

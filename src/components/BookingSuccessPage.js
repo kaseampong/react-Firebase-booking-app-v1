@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert } from 'reactstrap';
+import { Button, Container, Alert } from 'reactstrap';
+import PageHeader from './PageHeader';
 import { startViewBooking } from '../actions/booking';
 
 
@@ -20,13 +20,11 @@ export class BookingSuccessPage extends React.Component {
   render() {
     return (
       <div>
-      <div className="page-header">
-         <h1 className="page-header__title text-center">Booking  Successful</h1>
-     </div>
+     <PageHeader title='Booking  Successful'/>
       <Container fluid>
        <Container>
       
-       <div className="text-center mt-3">{this.props.reg_no}</div>
+       <div className="text-center mt-3">{this.props.adm}</div>
              <Alert color="success">
                You have successfully booked room for academic Year <span>{this.props.academicYear}</span>. 
                <Button color="link" onClick={this.startViewBooking}>View Details</Button>
@@ -41,7 +39,7 @@ export class BookingSuccessPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    reg_no:state.auth.regNo,
+    adm:state.auth.adm,
     academicYear:state.auth.academicYear
   };
 };

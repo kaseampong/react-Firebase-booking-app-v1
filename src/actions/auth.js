@@ -1,4 +1,4 @@
-import AppRouter, { history } from '../routers/AppRouter';
+import { history } from '../routers/AppRouter';
 import database from '../firebase/firebase';
 import {startSetPaymentDetails} from './payment';
 
@@ -17,15 +17,6 @@ export const logout = () => ({
   type: 'LOGOUT'
 });  
 
-export const resetSuccess = (message) => ({
-  type: 'RESET_PASSWORD_SUCCESS',
-  message
-});
-
-export const resetFail = (message) => ({
-  type: 'RESET_PASSWORD_FAIL',
-  message
-});
 
 export const signUpFail = (message) => ({
   type: 'SIGN_UP_FAIL',
@@ -57,23 +48,22 @@ export const resetBooking = () => ({
 
 
 
-export const resetRooms = () => ({
-  type: 'RESET_ROOMS'
+export const resetHostel = () => ({
+  type: 'RESET_HOSTEL'
 });
 
 
 export const startSignUp = (userData = {}) => {
-  return (dispatch, getState) => {
-    // const uid = getState().auth.uid;
+  return (dispatch) => {
     const {
-      regNo = '',
+      adm = '',
       password = '',
-      createdDate='',
-      createdTime='',
-      userGender=''
+      date='',
+      time='',
+      gender=''
     } = userData;
 
-    return database.ref(`users`).orderByChild('regNo').equalTo(regNo).limitToFirst(1).once('value').then((snapshot) => {
+    return database.ref(`users`).orderByChild('adm').equalTo(adm).once('value').then((snapshot) => {
          if (snapshot.exists()) {
              let message= `Registration number is already taken.`;
              dispatch(signUpFail(message));
@@ -92,11 +82,11 @@ export const startLogin = (userData = {}) => {
   return (dispatch, getState) => {
     // const uid = getState().auth.uid;
     const {
-      regNo = '',
+      adm = '',
       password = ''
     } = userData;
     
-    return database.ref(`users`).orderByChild('regNo').equalTo(regNo).limitToFirst(1).once('value').then((snapshot) => {
+    return database.ref(`users`).orderByChild('adm').equalTo(adm).once('value').then((snapshot) => {
          if (snapshot.exists()) {
              let user = {};
           // validate password
@@ -109,7 +99,7 @@ export const startLogin = (userData = {}) => {
           });
           if (user.password == password) {
             sessionStorage.setItem("uid", user.uid);
-            dispatch(loginSuccess({regNo:user.regNo,uid:user.uid,userGender:user.userGender,academicYear:'2018/2019'}));
+            dispatch(loginSuccess({adm:user.adm,uid:user.uid,gender:user.gender}));
             dispatch(resetAuth());
             dispatch(startSetPaymentDetails());
             history.push('/dashboard');
@@ -128,7 +118,7 @@ export const startLogin = (userData = {}) => {
 
 
 export const startLogout = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
        sessionStorage.clear();
        dispatch(logout());
        history.push('/');

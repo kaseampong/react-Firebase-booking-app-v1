@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert,ListGroup,ListGroupItem } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import PaymentForm from './PaymentForm';
+import PageHeader from './PageHeader';
 import { startMakePayment } from '../actions/payment';
 
 export  class PaymentFormPage extends React.Component {
@@ -12,11 +12,9 @@ export  class PaymentFormPage extends React.Component {
   render() {
     return (
       <div>
-      <div className="page-header">
-         <h1 className="page-header__title text-center">Payment</h1>
-     </div>
+        <PageHeader title='Payment'/>
   <Container fluid >
-  <div className="text-center mt-3">{this.props.reg_no}</div>
+  <div className="text-center mt-3">{this.props.adm}</div>
 
         <Row  >
         <Col
@@ -28,6 +26,7 @@ export  class PaymentFormPage extends React.Component {
          <PaymentForm
            onSubmit={this.onSubmit}
            message={this.props.message}
+           adm={this.props.adm}
           />
            </Col>
            </Row>
@@ -41,7 +40,7 @@ export  class PaymentFormPage extends React.Component {
 const mapStateToProps = (state) => {
   return {
     message:state.payment.message,
-    reg_no:state.auth.regNo
+    adm:state.auth.adm
   };
 };
 

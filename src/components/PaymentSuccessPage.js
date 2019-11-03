@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert } from 'reactstrap';
+import { Button, Container,Alert } from 'reactstrap';
+import PageHeader from './PageHeader';
 
 
 export class PaymentSuccessPage extends React.Component {
@@ -13,12 +13,10 @@ export class PaymentSuccessPage extends React.Component {
   render() {
     return (
       <div>
-      <div className="page-header">
-         <h1 className="page-header__title text-center">Payment successful</h1>
-     </div>
+        <PageHeader title='Payment Successful'/>
       <Container fluid>
        <Container>
-       <div className="text-center mt-3">{this.props.reg_no}</div>
+       <div className="text-center mt-3">{this.props.adm}</div>
       
              <Alert color="success" className=" mt-2">
                You have successfully made your payment for academic Year <span>{this.props.academicYear}</span>. 
@@ -34,8 +32,8 @@ export class PaymentSuccessPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    reg_no:state.auth.regNo,
-    academicYear:state.auth.academicYear
+    adm:state.auth.adm,
+    academicYear:state.hostel.academicYear
   };
 };
 

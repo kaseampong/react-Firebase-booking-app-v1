@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter,Router, Route, Switch ,Link, NavLink  } from 'react-router-dom';
+import { Router, Route, Switch   } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import SignUpFormPage from '../components/SignUpFormPage';
 import LoginFormPage from '../components/LoginFormPage';
-// import Procedure from '../components/Dashboard/dashboard-components/Procedure';
 import ViewRoomsFormPage from '../components/ViewRoomsFormPage';
 import ViewBookingPage from '../components/ViewBookingPage';
 import RoomsPage from '../components/RoomsPage';
@@ -15,6 +14,7 @@ import PaymentSuccessPage from '../components/PaymentSuccessPage';
 import PaymentFormPage from '../components/PaymentFormPage';
 import PaymentDashboardPage from '../components/PaymentDashboardPage';
 import ProcedurePage from '../components/ProcedurePage';
+import GalleryPage from '../components/GalleryPage';
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -38,7 +38,7 @@ const AppRouter = () => (
       <PrivateRoute path="/help" component={ProcedurePage}  />
       <PrivateRoute path="/rooms" component={RoomsPage}  />
       <PrivateRoute path="/book" component={BookRoomFormPage}  />
-
+      <PrivateRoute path="/gallery" component={GalleryPage}  />
       <Route component={NotFoundPage} />
       </Switch>
     </div>

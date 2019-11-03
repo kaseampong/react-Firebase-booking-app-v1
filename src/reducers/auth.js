@@ -1,13 +1,12 @@
-import { resetFail } from "../actions/auth";
+// AUTH REDUCER
 
 const authDefaultState={
   uid:'',
-  regNo:'',
-  userGender:'',
+  adm:'',
+  gender:'',
   academicYear:'',
   loginMessage:'',
-  signupMessage:"",
-  resetMessage:'',
+  signupMessage:''
 };
 export default (state = authDefaultState, action) => {
   switch (action.type) {
@@ -15,9 +14,8 @@ export default (state = authDefaultState, action) => {
       return {
         ...state,
         uid:action.user.uid,
-        regNo: action.user.regNo,
-        userGender:action.user.userGender,
-        academicYear:action.user.academicYear
+        adm: action.user.adm,
+        gender:action.user.gender
       };
 
       case 'LOGIN_FAIL':
@@ -37,17 +35,6 @@ export default (state = authDefaultState, action) => {
         signupMessage:action.message
       };
 
-
-      case 'RESET_PASSWORD_SUCCESS':
-      return {
-        ...state,
-        resetMessage:action.message
-      };
-      case 'RESET_PASSWORD_FAIL':
-      return {
-        ...state,
-        resetMessage:action.message
-      };
       case 'RESET_AUTH':
         return {
           ...state,

@@ -1,10 +1,9 @@
 // Payment Reducer
 
-const paymentReducerDefaultState = {
+let paymentReducerDefaultState = {
   paymentId:'',
   academicYear:'',
-  amountPaid: 0,
-  regNo: '',
+  amount: 0,
   message:''
 };
 

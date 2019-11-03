@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input,
-  Container, Row, Col,Alert } from 'reactstrap';
+import {Container, Col } from 'reactstrap';
 import SignUpForm from './SignUpForm';
-import { startSignUp } from '../actions/auth';
+import { startSignUp,resetAuth } from '../actions/auth';
 
 
 export  class SignUpFormPage extends React.Component {
@@ -36,7 +35,9 @@ export  class SignUpFormPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  startSignUp: (user) => dispatch(startSignUp(user))
+  startSignUp: (user) => dispatch(startSignUp(user)),
+  resetAuth: () => dispatch(resetAuth())
+
 });
 const mapStateToProps = (state) => {
   return {

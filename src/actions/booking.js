@@ -1,11 +1,12 @@
 import database from '../firebase/firebase';
-import AppRouter, {history} from '../routers/AppRouter';
-import {resetRooms} from './auth';
+import {history} from '../routers/AppRouter';
 
 
-// SET_ROOMS
-export const setRooms = (rooms) => ({
-  type: 'SET_ROOMS',
+
+// SET_HOSTEL
+export const setHostel = ({rooms = [],hostel}) => ({
+  type: 'SET_HOSTEL',
+  hostel,
   rooms
 });
 
@@ -34,25 +35,27 @@ export const resetMessage = () => ({
   type: 'RESET_MESSAGE'
 });
 
-
+ // VIEW ROOMS
 export const startViewRooms = ({
-  hostelName
+  hostel
 }) => {
-  return (dispatch, getState) => {
-    // const uid = getState().auth.uid;
-    return database.ref(`hostels/${hostelName}/rooms`).orderByKey().once('value').then((snapshot) => {
+  return (dispatch) => {
+    return database.ref(`hostels/${hostel}/rooms`).orderByKey().once('value').then((snapshot) => {
       if (snapshot.exists()) {
         const rooms = [];
         snapshot.forEach((childSnapshot) => {
           rooms.push({
-            Room_name: childSnapshot.key,
+            room: childSnapshot.key,
             ...childSnapshot.val()
           });
-          dispatch(setRooms(rooms));
         });
+          dispatch(setHostel({rooms,hostel}));
+          console.log(rooms);
+
       } else {
         const rooms = [];
-        dispatch(setRooms(rooms));
+        console.log(rooms);
+        dispatch(setHostel(rooms));
       }
 
     });
@@ -63,20 +66,20 @@ export const startViewRooms = ({
 // VIEW BOOKING
 export const startViewBooking = (userData = {}) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
+    const adm = getState().auth.adm;
+
     const {
       academicYear = ''
     } = userData;
 
-    const details = `${academicYear}_${uid}`;
-    return database.ref(`bookings`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
+    return database.ref(`bookings/${academicYear}/${adm}`).once('value').then((snapshot) => {
       if (snapshot.exists()) {
         const booking = [];
         snapshot.forEach((childSnapshot) => {
           booking.push({
             bookingId: childSnapshot.key,
-            ...childSnapshot.val(),
-            academicYear
+            ...childSnapshot.val()
+            
           });
 
         });
@@ -93,73 +96,76 @@ export const startViewBooking = (userData = {}) => {
 // BOOK ROOM
 export const startBookRoom = (userData = {}) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    const academicYear = getState().auth.academicYear;
-    const userGender = getState().auth.userGender;
-    const regNo = getState().auth.regNo;
 
+    const uid = getState().auth.uid;
+    const academicYear = getState().hostel.academicYear;
     const {
-      hostelName = '',
-        roomName = '',
-        bookingDate = '',
-        bookingTime = ''
+        adm = '',
+        gender='',
+        hostel = '',
+        room = '',
+        term = '',
+        date = '',
+        time = ''
     } = userData;
 
     // check if user has already booked
-    const details = `${academicYear}_${uid}`;
-    return database.ref(`bookings`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
+    return database.ref(`bookings/${academicYear}/${adm}`).orderByChild('term').equalTo(term).once('value').then((snapshot) => {
       if (snapshot.exists()) {
         const message = 'You have already booked room.';
         dispatch(failedBooking(message));
 
       } else {
         // check if user has paid the required amount
-        return database.ref(`payments`).orderByChild('academicYear').equalTo(details).once('value').then((snapshot) => {
+        return database.ref(`payments/${academicYear}/${adm}`).orderByChild('term').equalTo(term).once('value').then((snapshot) => {
           if (snapshot.exists()) {
             let user = {};
             snapshot.forEach((childSnapshot) => {
               user = {
+                ...user,
+                paymentId:childSnapshot.key,
                 ...childSnapshot.val()
               }
             })
-            const amount = parseInt(user.amountPaid, 10);
-            if (amount >= 3500) {
+            // const amount = parseInt(user.amount, 10);
+            if (user.amount >= 3500) {
               //check gender to verify the gender of student
-              return database.ref(`hostels/${hostelName}/hostelDetails`).once('value').then((snapshot) => {
-                const hostel = {
+              return database.ref(`hostels/${hostel}/hostelDetails`).once('value').then((snapshot) => {
+                let hostelDetails = {
                   ...snapshot.val()
                 };
-                if (hostel.gender == userGender) {
+
+                if (hostelDetails.gender == gender) {
                   // check if room capacity is full
-                  return database.ref(`hostels/${hostelName}/rooms/${roomName}`).once('value').then((snapshot) => {
+                  return database.ref(`hostels/${hostel}/rooms/${room}`).once('value').then((snapshot) => {
                     if (snapshot.exists()) {
-                      const room = {
+                      let roomDetails = {
                         ...snapshot.val()
                       };
-                      // const beds = parseInt(room.beds, 10);
-                      const beds = room.beds;
-                      if (beds == 0) {
+                      // const vacantBeds = parseInt(room.vacantBeds, 10);
+                      let vacantBeds = roomDetails.vacantBeds;
+                      if (vacantBeds == 0) {
                         const message = 'Room is full ,choose another room.';
                         dispatch(failedBooking(message));
                       } else {
                         // BOOK ROOM
-                        const booking = {
-                          regNo: regNo,
-                          roomName,
-                          bookingDate,
-                          bookingTime,
-                          academicYear: details,
-                          hostelName
+                        let booking = {
+                          room,
+                          date,
+                          time,
+                          term,
+                          uid,
+                          hostel
                         };
-                        return database.ref(`bookings`).push(booking).then((ref) => {
+                        return database.ref(`bookings/${academicYear}/${adm}`).push(booking).then((ref) => {
 
-                          //update number of beds after each booking
-                          const newCapacity = beds - 1;
-                          const update = {
-                            beds: newCapacity
+                          //update number of vacantBeds after each booking
+                          let newCapacity = vacantBeds - 1;
+                          let update = {
+                            vacantBeds: newCapacity
                           }
-                          return database.ref(`hostels/${hostelName}/rooms/${roomName}`).update(update).then(() => {
-                            const message = `You have sucessfully booked room ${roomName}.`;
+                          return database.ref(`hostels/${hostel}/rooms/${room}`).update(update).then(() => {
+                            const message = `You have sucessfully booked room ${room}.`;
                             dispatch(successBooking(message));
                             dispatch(resetMessage());
                             history.push('/booked/success');
@@ -167,7 +173,7 @@ export const startBookRoom = (userData = {}) => {
                         })
                       }
                     } else {
-                      const message = `Room does not exist in hostel ${hostelName}. `;
+                      const message = `Room does not exist in hostel ${hostel}. `;
                       dispatch(failedBooking(message));
                     }
 
@@ -190,3 +196,5 @@ export const startBookRoom = (userData = {}) => {
     });
   };
 };
+
+

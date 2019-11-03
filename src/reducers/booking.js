@@ -1,4 +1,4 @@
-// Booking Reducer
+// BOOKING REDUCER
 
 const BookingReducerDefaultState = {
   booking: [],

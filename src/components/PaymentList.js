@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PaymentListItem from './PaymentListItem';
 
-export const PaymentList = ({academicYear,amountPaid}) => (
+export const PaymentList = ({academicYear,amount}) => (
   <div className="content-container mt-4">
     <div className="list-header">
       <div className="show-for-mobile">Amount Paid</div>
@@ -10,7 +10,7 @@ export const PaymentList = ({academicYear,amountPaid}) => (
       <div className="show-for-desktop">Amount</div>
     </div>
     <div className="list-body">
-    <PaymentListItem  academiYear={academicYear}  amount={amountPaid}/>
+    <PaymentListItem  academiYear={academicYear}  amount={amount}/>
      
     </div>
   </div>
@@ -19,8 +19,8 @@ export const PaymentList = ({academicYear,amountPaid}) => (
 
 const mapStateToProps = (state) => {
   return {
-    academicYear: state.auth.academicYear,
-    amountPaid:state.payment.amountPaid
+    academicYear: state.hostel.academicYear,
+    amount:state.payment.amount
   };
 };
 

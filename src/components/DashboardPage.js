@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Container,Card, Button, CardImg,CardColumns, CardTitle, CardText, CardDeck,
-    CardSubtitle, CardBody,CardGroup,Row,Col} from 'reactstrap';
+import { Container,Card, CardText, CardDeck, CardBody} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBuilding, faBed,faKey, faQuestionCircle,faMoneyBillWave,faCoins }from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faBed,faKey, faQuestionCircle,faCoins,faImages }from '@fortawesome/free-solid-svg-icons'
+import PageHeader from './PageHeader';
 
 
 const DashboardPage = (props) => (
 <div>
  <div>
-    <div className="page-header">
-        <h1 className="page-header__title text-center">Online Booking</h1>
-      </div>
+   
+      <PageHeader title='Online Booking'/>
         <Container fluid>
          <Container >
-        <div className="text-center mt-3">{props.reg_no}</div>
+        <div className="text-center mt-3">{props.adm}</div>
           <Container fluid className="content-container mt-2 ">
        <CardDeck> 
           <Card>
@@ -67,6 +66,17 @@ const DashboardPage = (props) => (
             <Card>
             <CardBody>
             <div className="d-flex justify-content-center">
+            <FontAwesomeIcon icon={faImages} color="#696969" size="lg" />
+            </div>
+              <CardText className="text-center">View gallery for hostels.</CardText>
+              <div className="d-flex justify-content-center">
+              <Link className="button button--secondary" to="/gallery">View Gallery</Link>
+              </div>
+            </CardBody>
+            </Card>
+            <Card>
+            <CardBody>
+            <div className="d-flex justify-content-center">
             <FontAwesomeIcon icon={faQuestionCircle} color="#696969" size="lg" />
             </div>
               <CardText className="text-center">Check for help.</CardText>
@@ -74,8 +84,6 @@ const DashboardPage = (props) => (
               <Link className="button button--secondary" to="/help">How To Book</Link>
               </div>
             </CardBody>
-            </Card>
-            <Card className="border-0">
             </Card>
        </CardDeck> 
 </Container>
@@ -88,7 +96,7 @@ const DashboardPage = (props) => (
   
   const mapStateToProps = (state) => {
     return {
-      reg_no: state.auth.regNo
+      adm: state.auth.adm
     };
   };
   
