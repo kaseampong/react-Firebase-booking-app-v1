@@ -50,7 +50,6 @@ export const startViewRooms = ({
           });
         });
           dispatch(setHostel({rooms,hostel}));
-          console.log(rooms);
 
       } else {
         const rooms = [];
@@ -98,7 +97,7 @@ export const startBookRoom = (userData = {}) => {
   return (dispatch, getState) => {
 
     const uid = getState().auth.uid;
-    const academicYear = getState().hostel.academicYear;
+    const academicYear = getState().auth.academicYear;
     const {
         adm = '',
         gender='',

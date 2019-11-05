@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { MDBDataTable } from 'mdbreact';
 import{Container,Alert} from 'reactstrap';
 import PageHeader from './PageHeader';
+import selectRooms from '../selectors/rooms';
 
 export const RoomsPage = (props) => {
     const data = {
@@ -10,6 +11,11 @@ export const RoomsPage = (props) => {
         {
           label: 'Room',
           field: 'room',
+          sort: 'asc'
+        },
+        {
+          label: 'Vacant Beds',
+          field: 'vacantBeds',
           sort: 'asc'
         },
         {
@@ -21,21 +27,16 @@ export const RoomsPage = (props) => {
           label: 'Room Type',
           field: 'roomType',
           sort: 'asc'
-        },
-        {
-          label: 'Vacant Beds',
-          field: 'vacantBeds',
-          sort: 'asc'
         }
       
       ],
-      rows: props.hostel.rooms.map((room) => room)
+      rows: props.rooms.map((room) => room)
        
     };
   
   return (
     <div>
-        <PageHeader title={`Hostel ${props.hostel.hostel}` || 'Rooms'}/>
+        <PageHeader title={data.rows.length === 0 ? 'Hostel': `Hostel ${props.hostel}` }/>
 
 <Container fluid>
 <Container>
@@ -66,7 +67,8 @@ export const RoomsPage = (props) => {
 };
   const mapStateToProps = (state) => {
     return {
-      hostel: state.hostel,
+      hostel:state.hostel.hostel,
+      rooms: selectRooms(state.hostel.rooms),
       adm:state.auth.adm
     };
   };

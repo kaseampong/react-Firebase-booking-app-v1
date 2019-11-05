@@ -1,7 +1,7 @@
 // BOOKING REDUCER
 
 const BookingReducerDefaultState = {
-  booking: [],
+  bookings: [],
   message: '',
   paymentMessage: ''
 };
@@ -11,7 +11,7 @@ export default (state = BookingReducerDefaultState, action) => {
     case 'SET_BOOKING':
       return {
         ...state,
-        booking: action.booking
+        bookings: action.booking
       };
 
     case 'FAILED_BOOKING':

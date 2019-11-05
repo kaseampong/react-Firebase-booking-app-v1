@@ -1,6 +1,6 @@
 // Rooms Reducer
 
-const hostelReducerDefaultState = {hostel:'',academicYear:'2019-2020',term:'SEMESTER 1 2019-2020',rooms:[]};
+const hostelReducerDefaultState = {hostel:'',rooms:[]};
 
 export default (state = hostelReducerDefaultState, action) => {
   switch (action.type) {

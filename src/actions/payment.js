@@ -26,9 +26,9 @@ export const failedPayment = (message) => ({
 export const startSetPaymentDetails = () => {
   return (dispatch, getState) => {
     
-    const academicYear = getState().hostel.academicYear;
     const adm = getState().auth.adm;
-    const term = getState().hostel.term;
+    const term = getState().auth.term;
+    const academicYear = getState().auth.academicYear;
     
     return database.ref(`payments/${academicYear}/${adm}`).orderByChild('term').equalTo(term).once('value').then((snapshot) => {
       if (snapshot.exists()) {
@@ -56,7 +56,7 @@ export const startSetPaymentDetails = () => {
 // MAKE PAYMENT
 export const startMakePayment = (userData = {}) => {
   return (dispatch, getState) => {
-    const academicYear = getState().hostel.academicYear;
+    const academicYear = getState().auth.academicYear;
 
     let {
        adm = '',

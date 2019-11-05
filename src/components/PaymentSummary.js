@@ -19,7 +19,7 @@ export const PaymentSummary = ({ academicYear }) => {
 
 const mapStateToProps = (state) => {
   return {
-    academicYear: state.hostel.academicYear
+    academicYear: state.auth.academicYear
   };
 };
 

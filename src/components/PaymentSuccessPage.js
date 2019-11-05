@@ -33,7 +33,7 @@ export class PaymentSuccessPage extends React.Component {
 const mapStateToProps = (state) => {
   return {
     adm:state.auth.adm,
-    academicYear:state.hostel.academicYear
+    academicYear:state.auth.academicYear
   };
 };
 

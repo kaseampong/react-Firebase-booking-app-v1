@@ -18,7 +18,6 @@ export default class SignUpForm extends React.Component {
     const adm = e.target.value;
     this.setState(() => ({ adm }));
   };
- 
   onGenderChange = (e) => {
     const gender = e.target.value;
     this.setState(() => ({ gender }));
@@ -48,9 +47,9 @@ export default class SignUpForm extends React.Component {
         let today = new Date();  
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         let time=today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    
+        let reg = this.state.adm.replace(/\//g, "-");
         const user ={
-          adm:this.state.adm.toUpperCase(),
+          adm:reg.toUpperCase(),
           gender:this.state.gender,
           password:this.state.passwordtwo,
           date,

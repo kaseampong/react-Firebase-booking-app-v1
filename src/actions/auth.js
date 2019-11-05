@@ -30,8 +30,8 @@ export const signUpSuccess = (message) => ({
 });
 
 
-export const resetAuth = () => ({
-  type: 'RESET_AUTH'
+export const resetMessage = () => ({
+  type: 'RESET_MESSAGE'
 });
 
 
@@ -55,7 +55,7 @@ export const resetHostel = () => ({
 
 export const startSignUp = (userData = {}) => {
   return (dispatch) => {
-    const {
+    let {
       adm = '',
       password = '',
       date='',
@@ -65,14 +65,16 @@ export const startSignUp = (userData = {}) => {
 
     return database.ref(`users`).orderByChild('adm').equalTo(adm).once('value').then((snapshot) => {
          if (snapshot.exists()) {
-             let message= `Registration number is already taken.`;
+             const message= `Registration number is already taken.`;
              dispatch(signUpFail(message));
          } else {
 
          //sign up user
          return database.ref(`users`).push(userData).then((ref) => {
-          let message = `You have registered successfully.`;
-          dispatch(signUpSuccess(message));
+          const message = `You have registered successfully.`;
+          // dispatch(signUpSuccess(message));
+          dispatch(resetMessage());
+          dispatch(startLogin({adm,password}));
         });
     }});
   };
@@ -80,8 +82,7 @@ export const startSignUp = (userData = {}) => {
 
 export const startLogin = (userData = {}) => {
   return (dispatch, getState) => {
-    // const uid = getState().auth.uid;
-    const {
+    let {
       adm = '',
       password = ''
     } = userData;
@@ -99,17 +100,24 @@ export const startLogin = (userData = {}) => {
           });
           if (user.password == password) {
             sessionStorage.setItem("uid", user.uid);
-            dispatch(loginSuccess({adm:user.adm,uid:user.uid,gender:user.gender}));
-            dispatch(resetAuth());
-            dispatch(startSetPaymentDetails());
-            history.push('/dashboard');
+            const userData ={
+              adm:user.adm,
+              uid:user.uid,
+              gender:user.gender,
+              term:"SEMESTER 1 2019-2020",
+              academicYear:'2019-2020'
+            }
+            dispatch(loginSuccess(userData));
+            dispatch(startSetPaymentDetails()).then(()=>{
+              history.push('/dashboard');
+            });
           } else {
-            let message = `Incorrect registration number or password.`;
+            const message = `Incorrect registration number or password.`;
             dispatch(loginFail(message));
           }
   
          } else {
-          let message = `Incorrect registration number or password.`;
+          const message = `Incorrect registration number or password.`;
           dispatch(loginFail(message));
 
     }});

@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Container, Col } from 'reactstrap';
 import SignUpForm from './SignUpForm';
-import { startSignUp,resetAuth } from '../actions/auth';
+import { startSignUp,resetMessage } from '../actions/auth';
 
 
 export  class SignUpFormPage extends React.Component {
   onSubmit = (user) => {
+    this.props.resetMessage();
     this.props.startSignUp(user);
   };
   render() {
@@ -36,12 +37,12 @@ export  class SignUpFormPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   startSignUp: (user) => dispatch(startSignUp(user)),
-  resetAuth: () => dispatch(resetAuth())
+  resetMessage: () => dispatch(resetMessage())
 
 });
 const mapStateToProps = (state) => {
   return {
-    message: state.auth.signupMessage
+    message: state.auth.message
   };
 };
 

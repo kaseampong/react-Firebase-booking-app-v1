@@ -4,9 +4,11 @@ import {Container, Row, Col } from 'reactstrap';
 import BookRoomForm from './BookRoomForm';
 import PageHeader from './PageHeader';
 import { startBookRoom } from '../actions/booking';
+import { resetMessage } from '../actions/auth';
 
 export  class BookRoomFormPage extends React.Component {
   onSubmit = (details) => {
+    this.props.resetMessage();
     this.props.startBookRoom(details);
   };
   render() {
@@ -48,7 +50,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  startBookRoom: (details) => dispatch(startBookRoom(details))
+  startBookRoom: (details) => dispatch(startBookRoom(details)),
+  resetMessage: () => dispatch(resetMessage())
+
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(BookRoomFormPage);

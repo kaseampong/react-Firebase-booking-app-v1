@@ -51,10 +51,6 @@ onSubmit = (e) => {
             <option >A</option>
             <option >B</option>
             <option >C</option>
-            <option > D</option>
-            <option > E</option>
-            <option > F</option>
-            <option >Tana</option>
           </Input>
         </FormGroup>
         <div className="box-layout__header" >

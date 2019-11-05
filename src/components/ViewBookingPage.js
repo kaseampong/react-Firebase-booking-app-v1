@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { MDBDataTable } from 'mdbreact';
 import{Container,Alert} from 'reactstrap';
 import PageHeader from './PageHeader';
+import selectBooking from '../selectors/booking';
 
 export const ViewBookingPage = (props) => {
     const data = {
@@ -36,8 +37,7 @@ export const ViewBookingPage = (props) => {
   
   return (
     <div>
-
-<PageHeader title='My Booking'/>
+<PageHeader title={data.rows.length === 0 ? 'Booking' :`Booking for ${props.academicYear}` }/>
 <Container fluid>
 <Container>
 <div className="text-center mt-3 mb-4">{props.adm}</div>
@@ -68,9 +68,9 @@ export const ViewBookingPage = (props) => {
 
   const mapStateToProps = (state) => {
     return {
-      booking: state.booking.booking,
+      booking: selectBooking(state.booking.bookings),
       adm:state.auth.adm,
-      academicYear:state.hostel.academicYear
+      academicYear:state.auth.academicYear
     };
   };
   

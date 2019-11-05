@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Container, Col } from 'reactstrap';
 import LoginForm from './LoginForm';
-import { startLogin , resetAuth} from '../actions/auth';
+import { startLogin , resetMessage} from '../actions/auth';
 
 
 export class LoginFormPage extends React.Component {
@@ -11,7 +11,7 @@ export class LoginFormPage extends React.Component {
 
   }
   onSubmit = (user) => {
-    this.props.resetAuth();
+    this.props.resetMessage();
     this.props.startLogin(user);
 
   };
@@ -43,13 +43,13 @@ export class LoginFormPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
     startLogin: (user) => dispatch(startLogin(user)),
-    resetAuth: () => dispatch(resetAuth())
+    resetMessage: () => dispatch(resetMessage())
 
   });
   
 const mapStateToProps = (state) => {
     return {
-      message: state.auth.loginMessage,
+      message: state.auth.message,
     };
   };
   

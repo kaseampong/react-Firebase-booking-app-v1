@@ -5,8 +5,8 @@ const authDefaultState={
   adm:'',
   gender:'',
   academicYear:'',
-  loginMessage:'',
-  signupMessage:''
+  term:'',
+  message:''
 };
 export default (state = authDefaultState, action) => {
   switch (action.type) {
@@ -15,32 +15,33 @@ export default (state = authDefaultState, action) => {
         ...state,
         uid:action.user.uid,
         adm: action.user.adm,
-        gender:action.user.gender
+        gender:action.user.gender,
+        term:action.user.term,
+        academicYear:action.user.academicYear
+
       };
 
       case 'LOGIN_FAIL':
       return {
         ...state,
-        loginMessage:action.message
+        message:action.message
       };
 
       case 'SIGN_UP_SUCCESS':
       return {
         ...state,
-        signupMessage:action.message
+        message:action.message
       };
       case 'SIGN_UP_FAIL':
       return {
         ...state,
-        signupMessage:action.message
+        message:action.message
       };
 
-      case 'RESET_AUTH':
+      case 'RESET_MESSAGE':
         return {
           ...state,
-          resetMessage:'',
-          signupMessage:'',
-          loginMessage:''
+          message:'',
 
         };
     case 'LOGOUT':

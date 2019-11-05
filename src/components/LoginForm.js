@@ -32,8 +32,10 @@ onSubmit = (e) => {
   
     } else {
       this.setState(() => ({ error: '' }));
+      let reg = this.state.adm.replace(/\//g, "-");
+
       const user ={
-      adm:this.state.adm.toUpperCase(),
+      adm:reg.toUpperCase(),
       password:this.state.password
     };
     this.props.onSubmit(user);

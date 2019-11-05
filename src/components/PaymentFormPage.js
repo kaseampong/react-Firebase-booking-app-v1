@@ -4,10 +4,13 @@ import { Container, Row, Col } from 'reactstrap';
 import PaymentForm from './PaymentForm';
 import PageHeader from './PageHeader';
 import { startMakePayment } from '../actions/payment';
+import { resetMessage } from '../actions/auth';
 
 export  class PaymentFormPage extends React.Component {
   onSubmit = (details) => {
     this.props.startMakePayment(details);
+    this.props.resetMessage();
+
   };
   render() {
     return (
@@ -45,7 +48,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    startMakePayment: (details) => dispatch(startMakePayment(details))
+    startMakePayment: (details) => dispatch(startMakePayment(details)),
+  resetMessage: () => dispatch(resetMessage())
+
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PaymentFormPage);

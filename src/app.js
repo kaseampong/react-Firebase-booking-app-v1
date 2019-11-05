@@ -5,7 +5,7 @@ import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'normalize.css/normalize.css';
+import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
 
